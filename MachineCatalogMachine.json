@@ -1,0 +1,4750 @@
+{
+  "x-generator": "NSwag v13.14.4.0 (NJsonSchema v10.5.2.0 (Newtonsoft.Json v13.0.0.0))",
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Citrix Virtual Apps and Desktops Rest API for Developer Portal",
+    "version": "devportal-ga"
+  },
+    "servers": [
+    {
+      "url": "https://api-us.cloud.com/cvad/manage",
+      "description": "For customers in US region"
+    }
+  ],
+  "paths": {
+      "/MachineCatalogs/{nameOrId}/Machines": {
+      "get": {
+        "tags": [
+          "MachineCatalogs APIs"
+        ],
+        "summary": "GET the machines of a catalog",
+        "operationId": "MachineCatalogs_GetMachineCatalogMachines",
+        "parameters": [
+          {
+            "name": "nameOrId",
+            "in": "path",
+            "required": true,
+            "description": "Name or ID of the machine catalog",
+            "schema": {
+              "title": "String",
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The max number of machines returned by this query.\nIf not specified, the server might use a default limit of 250 items.\nIf the specified value is larger than 1000, the server might reject the call.\nThe default and maximum values depend on server settings.",
+            "schema": {
+              "title": "Int32",
+              "type": "integer",
+              "format": "int32",
+              "nullable": true
+            },
+            "x-position": 2
+          },
+          {
+            "name": "continuationToken",
+            "in": "query",
+            "description": "If a query cannot be completed, the response will have a\nContinuationToken set.\nTo obtain more results from the query, pass the\ncontinuation token back into the query to get the next\nbatch of results.",
+            "schema": {
+              "title": "String",
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 3
+          },
+          {
+            "name": "async",
+            "in": "query",
+            "description": "If `true`, it will be queried as a background task.",
+            "schema": {
+              "title": "Boolean",
+              "type": "boolean",
+              "default": false,
+              "nullable": true
+            },
+            "x-position": 4
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "Optional parameters, only the specified properties in the fields are required.",
+            "schema": {
+              "title": "String",
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 5,
+            "example": "Uid,AgentVersion,AllocationType"
+          },
+          {
+            "name": "Citrix-CustomerId",
+            "in": "header",
+            "required": true,
+            "description": "Citrix Cloud Customer ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Citrix-InstanceId",
+            "in": "header",
+            "required": true,
+            "description": "Citrix Cloud Instance (Site) ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "required": true,
+            "description": "User Agent type of the request.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Mozilla/5.0"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Citrix Cloud authorization header: CWSAuth Bearer={token}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Citrix-TransactionId",
+            "in": "header",
+            "description": "Transaction ID that will be used to track this request. If not provided, a new GUID will be generated and returned.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-ActionName",
+            "in": "header",
+            "description": "Orchestration Action Name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "Must accept application/json.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Citrix-Locale",
+            "in": "header",
+            "description": "Locale of the request.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "en-US"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The machines of the given machine catalog identifier",
+            "headers": {
+              "Citrix-TransactionId": {
+                "description": "Transaction ID that is either provided by caller with the same request header or newly created.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "57AB53D9-589A-4AA8-8879-6B1DACF3A868"
+              },
+              "Content-Type": {
+                "description": "Response Content Type. Value is always 'application/json'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "X-Content-Type-Options": {
+                "description": "Content type options. Value is always 'nosniff'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "nosniff"
+              },
+              "Content-Language": {
+                "description": "Content language. Value is either 'en-US' or based on client language setting.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "en-US"
+              },
+              "Cache-Control": {
+                "description": "Cache Control. Value is always 'no-cache, no-store, must-revalidate.'",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache, no-store, must-revalidate"
+              },
+              "Pragma": {
+                "description": "Pragma. Value is always 'no-cache'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache"
+              },
+              "Citrix-FilterScope": {
+                "description": "Optional filter scope for getting scoped objects.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "b79aadf4-a0e6-11eb-bcbc-0242ac130002"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MachineResponseModelCollection"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Async request was accepted and is being processed.",
+            "headers": {
+              "Location": {
+                "description": "Location where the async job completion status can be queried.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Jobs/{id}"
+              },
+              "Citrix-TransactionId": {
+                "description": "Transaction ID that is either provided by caller with the same request header or newly created.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "57AB53D9-589A-4AA8-8879-6B1DACF3A868"
+              },
+              "Content-Type": {
+                "description": "Response Content Type. Value is always 'application/json'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "X-Content-Type-Options": {
+                "description": "Content type options. Value is always 'nosniff'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "nosniff"
+              },
+              "Content-Language": {
+                "description": "Content language. Value is either 'en-US' or based on client language setting.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "en-US"
+              },
+              "Cache-Control": {
+                "description": "Cache Control. Value is always 'no-cache, no-store, must-revalidate.'",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache, no-store, must-revalidate"
+              },
+              "Pragma": {
+                "description": "Pragma. Value is always 'no-cache'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache"
+              },
+              "Citrix-FilterScope": {
+                "description": "Optional filter scope for getting scoped objects.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "b79aadf4-a0e6-11eb-bcbc-0242ac130002"
+              }
+            }
+          },
+          "400": {
+            "description": "Caller passed an invalid input.",
+            "headers": {
+              "Citrix-TransactionId": {
+                "description": "Transaction ID that is either provided by caller with the same request header or newly created.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "57AB53D9-589A-4AA8-8879-6B1DACF3A868"
+              },
+              "Content-Type": {
+                "description": "Response Content Type. Value is always 'application/json'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "X-Content-Type-Options": {
+                "description": "Content type options. Value is always 'nosniff'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "nosniff"
+              },
+              "Content-Language": {
+                "description": "Content language. Value is either 'en-US' or based on client language setting.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "en-US"
+              },
+              "Cache-Control": {
+                "description": "Cache Control. Value is always 'no-cache, no-store, must-revalidate.'",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache, no-store, must-revalidate"
+              },
+              "Pragma": {
+                "description": "Pragma. Value is always 'no-cache'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache"
+              },
+              "Citrix-FilterScope": {
+                "description": "Optional filter scope for getting scoped objects.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "b79aadf4-a0e6-11eb-bcbc-0242ac130002"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "https://errors-api.cloud.com/common/outOfRange": {
+                    "value": {
+                      "type": "https://errors-api.cloud.com/common/outOfRange",
+                      "detail": "A parameter in the request is out of range",
+                      "parameters": [
+                        {
+                          "name": "property",
+                          "value": "startTime"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Caller did not present a valid bearer token.",
+            "headers": {
+              "Citrix-TransactionId": {
+                "description": "Transaction ID that is either provided by caller with the same request header or newly created.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "57AB53D9-589A-4AA8-8879-6B1DACF3A868"
+              },
+              "Content-Type": {
+                "description": "Response Content Type. Value is always 'application/json'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "X-Content-Type-Options": {
+                "description": "Content type options. Value is always 'nosniff'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "nosniff"
+              },
+              "Content-Language": {
+                "description": "Content language. Value is either 'en-US' or based on client language setting.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "en-US"
+              },
+              "Cache-Control": {
+                "description": "Cache Control. Value is always 'no-cache, no-store, must-revalidate.'",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache, no-store, must-revalidate"
+              },
+              "Pragma": {
+                "description": "Pragma. Value is always 'no-cache'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache"
+              },
+              "Citrix-FilterScope": {
+                "description": "Optional filter scope for getting scoped objects.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "b79aadf4-a0e6-11eb-bcbc-0242ac130002"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "https://errors-api.cloud.com/common/authentication": {
+                    "value": {
+                      "type": "https://errors-api.cloud.com/common/authentication",
+                      "detail": "Missing or invalid authentication details",
+                      "parameters": [
+                        {
+                          "name": "reason",
+                          "value": "missing"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller is not authorized to perform the operation.",
+            "headers": {
+              "Citrix-TransactionId": {
+                "description": "Transaction ID that is either provided by caller with the same request header or newly created.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "57AB53D9-589A-4AA8-8879-6B1DACF3A868"
+              },
+              "Content-Type": {
+                "description": "Response Content Type. Value is always 'application/json'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "X-Content-Type-Options": {
+                "description": "Content type options. Value is always 'nosniff'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "nosniff"
+              },
+              "Content-Language": {
+                "description": "Content language. Value is either 'en-US' or based on client language setting.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "en-US"
+              },
+              "Cache-Control": {
+                "description": "Cache Control. Value is always 'no-cache, no-store, must-revalidate.'",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache, no-store, must-revalidate"
+              },
+              "Pragma": {
+                "description": "Pragma. Value is always 'no-cache'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache"
+              },
+              "Citrix-FilterScope": {
+                "description": "Optional filter scope for getting scoped objects.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "b79aadf4-a0e6-11eb-bcbc-0242ac130002"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "https://errors-api.cloud.com/common/authorization": {
+                    "value": {
+                      "type": "https://errors-api.cloud.com/common/authorization",
+                      "detail": "Access denied",
+                      "parameters": [
+                        {
+                          "name": "entityType",
+                          "value": "https://identifiers-api.cloud.com/example/widget"
+                        },
+                        {
+                          "name": "id",
+                          "value": "guid1"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "A referenced entity was not found.",
+            "headers": {
+              "Citrix-TransactionId": {
+                "description": "Transaction ID that is either provided by caller with the same request header or newly created.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "57AB53D9-589A-4AA8-8879-6B1DACF3A868"
+              },
+              "Content-Type": {
+                "description": "Response Content Type. Value is always 'application/json'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "X-Content-Type-Options": {
+                "description": "Content type options. Value is always 'nosniff'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "nosniff"
+              },
+              "Content-Language": {
+                "description": "Content language. Value is either 'en-US' or based on client language setting.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "en-US"
+              },
+              "Cache-Control": {
+                "description": "Cache Control. Value is always 'no-cache, no-store, must-revalidate.'",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache, no-store, must-revalidate"
+              },
+              "Pragma": {
+                "description": "Pragma. Value is always 'no-cache'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache"
+              },
+              "Citrix-FilterScope": {
+                "description": "Optional filter scope for getting scoped objects.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "b79aadf4-a0e6-11eb-bcbc-0242ac130002"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "https://errors-api.cloud.com/common/notFound": {
+                    "value": {
+                      "type": "https://errors-api.cloud.com/common/notFound",
+                      "detail": "Widget not found",
+                      "parameters": [
+                        {
+                          "name": "entityType",
+                          "value": "https://identifiers-api.cloud.com/example/widget"
+                        },
+                        {
+                          "name": "id",
+                          "value": "guid1"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Caller must specify utf-8 charset with the Accept header.",
+            "headers": {
+              "Citrix-TransactionId": {
+                "description": "Transaction ID that is either provided by caller with the same request header or newly created.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "57AB53D9-589A-4AA8-8879-6B1DACF3A868"
+              },
+              "Content-Type": {
+                "description": "Response Content Type. Value is always 'application/json'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "X-Content-Type-Options": {
+                "description": "Content type options. Value is always 'nosniff'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "nosniff"
+              },
+              "Content-Language": {
+                "description": "Content language. Value is either 'en-US' or based on client language setting.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "en-US"
+              },
+              "Cache-Control": {
+                "description": "Cache Control. Value is always 'no-cache, no-store, must-revalidate.'",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache, no-store, must-revalidate"
+              },
+              "Pragma": {
+                "description": "Pragma. Value is always 'no-cache'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache"
+              },
+              "Citrix-FilterScope": {
+                "description": "Optional filter scope for getting scoped objects.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "b79aadf4-a0e6-11eb-bcbc-0242ac130002"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "https://errors-api.cloud.com/common/notAcceptable": {
+                    "value": {
+                      "type": "https://errors-api.cloud.com/common/notAcceptable",
+                      "detail": "Must accept application/json media type",
+                      "parameters": [
+                        {
+                          "name": "contentType",
+                          "value": "application/json"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Caller has made too many requests in a short period of time and is being rate-limited.",
+            "headers": {
+              "Citrix-TransactionId": {
+                "description": "Transaction ID that is either provided by caller with the same request header or newly created.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "57AB53D9-589A-4AA8-8879-6B1DACF3A868"
+              },
+              "Content-Type": {
+                "description": "Response Content Type. Value is always 'application/json'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "X-Content-Type-Options": {
+                "description": "Content type options. Value is always 'nosniff'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "nosniff"
+              },
+              "Content-Language": {
+                "description": "Content language. Value is either 'en-US' or based on client language setting.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "en-US"
+              },
+              "Cache-Control": {
+                "description": "Cache Control. Value is always 'no-cache, no-store, must-revalidate.'",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache, no-store, must-revalidate"
+              },
+              "Pragma": {
+                "description": "Pragma. Value is always 'no-cache'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache"
+              },
+              "Citrix-FilterScope": {
+                "description": "Optional filter scope for getting scoped objects.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "b79aadf4-a0e6-11eb-bcbc-0242ac130002"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "https://errors-api.cloud.com/common/rateLimitExceeded": {
+                    "value": {
+                      "type": "https://errors-api.cloud.com/common/rateLimitExceeded",
+                      "detail": "Rate limit exceeded; try again in 4 seconds",
+                      "parameters": [
+                        {
+                          "name": "retryDelay",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service is temporarily unable to process the request.  Caller may attempt the operation again, with exponential back-off.",
+            "headers": {
+              "Citrix-TransactionId": {
+                "description": "Transaction ID that is either provided by caller with the same request header or newly created.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "57AB53D9-589A-4AA8-8879-6B1DACF3A868"
+              },
+              "Content-Type": {
+                "description": "Response Content Type. Value is always 'application/json'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "X-Content-Type-Options": {
+                "description": "Content type options. Value is always 'nosniff'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "nosniff"
+              },
+              "Content-Language": {
+                "description": "Content language. Value is either 'en-US' or based on client language setting.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "en-US"
+              },
+              "Cache-Control": {
+                "description": "Cache Control. Value is always 'no-cache, no-store, must-revalidate.'",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache, no-store, must-revalidate"
+              },
+              "Pragma": {
+                "description": "Pragma. Value is always 'no-cache'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache"
+              },
+              "Citrix-FilterScope": {
+                "description": "Optional filter scope for getting scoped objects.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "b79aadf4-a0e6-11eb-bcbc-0242ac130002"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "https://errors-api.cloud.com/common/serviceUnavailable": {
+                    "value": {
+                      "type": "https://errors-api.cloud.com/common/serviceUnavailable",
+                      "detail": "Service is unavailable; try again in 4 seconds",
+                      "parameters": [
+                        {
+                          "name": "retryDelay",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "MachineCatalogs APIs"
+        ],
+        "summary": "Add machine to the machine catalog.",
+        "description": "Add a machine to the machine catalog.  This is the first step in making the\nmachine available to run users' desktops and applications. The machine may\nbe physical or virtual.  The type of machine (physical or virtual) must\nmatch the machine catalog configuration.\n\n\nNote that due to\nthe long-running nature of the adding operation, it cannot\ncomplete synchronously, would always initiate an asynchronous job to\nrun to completion.\n\n\nThe machine must support the expected capabilities of the machine catalog:\nthe  and\n. The session\nsupport of the machine is determined by the type of Citrix VDA software\ninstalled (server or workstation) and the functional level depends on the\nversion of the Citrix VDA software installed.  The API will complete\nsuccessfully if these are not correct but the machine will be unable to register.\n\n\nNote: to add multiple machines in a single call, use the\n API.",
+        "operationId": "MachineCatalogs_AddMachineCatalogMachine",
+        "parameters": [
+          {
+            "name": "nameOrId",
+            "in": "path",
+            "required": true,
+            "description": "Name or ID of the machine catalog to add machine to.",
+            "schema": {
+              "title": "String",
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
+          },
+          {
+            "name": "async",
+            "in": "query",
+            "description": "If `true`, the machine will be added into the machine catalog as a background task.\nThe task will have JobType AddMachineCatalogMachine.\nWhen the task is complete it will redirect to\nGetMachineCatalog.\nThe job's Parameters will contain properties:\n* _NameOrId_ - Name or ID of the machine being added.",
+            "schema": {
+              "title": "Boolean",
+              "type": "boolean",
+              "default": false,
+              "nullable": true
+            },
+            "x-position": 3
+          },
+          {
+            "name": "Citrix-CustomerId",
+            "in": "header",
+            "required": true,
+            "description": "Citrix Cloud Customer ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Citrix-InstanceId",
+            "in": "header",
+            "required": true,
+            "description": "Citrix Cloud Instance (Site) ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "required": true,
+            "description": "User Agent type of the request.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Mozilla/5.0"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Citrix Cloud authorization header: CWSAuth Bearer={token}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Citrix-TransactionId",
+            "in": "header",
+            "description": "Transaction ID that will be used to track this request. If not provided, a new GUID will be generated and returned.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-AdminCredential",
+            "in": "header",
+            "description": "Admin credential to use when performing the operation. If not specified, the operation will be performed using the account under which the identity service is running If specified, must be in a format matching that of the standard 'Authorization' request header; the username and password separated by a colon, UTF8-encoded, then base64-encoded, then the \"Basic \" scheme prepended.\r\nExample:Basic QWxhZGRpbjpPcGVuU2VzYW1l",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-ActionName",
+            "in": "header",
+            "description": "Orchestration Action Name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "Must accept application/json.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Citrix-Locale",
+            "in": "header",
+            "description": "Locale of the request.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "en-US"
+          }
+        ],
+        "requestBody": {
+          "x-name": "machine",
+          "description": "Details of the machine to add to the machine catalog.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/AddMachineToMachineCatalogDetailRequestModel"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true,
+          "x-position": 2
+        },
+        "responses": {
+          "200": {
+            "description": "Asynchronous job status.",
+            "headers": {
+              "Citrix-TransactionId": {
+                "description": "Transaction ID that is either provided by caller with the same request header or newly created.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "57AB53D9-589A-4AA8-8879-6B1DACF3A868"
+              },
+              "Content-Type": {
+                "description": "Response Content Type. Value is always 'application/json'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "X-Content-Type-Options": {
+                "description": "Content type options. Value is always 'nosniff'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "nosniff"
+              },
+              "Content-Language": {
+                "description": "Content language. Value is either 'en-US' or based on client language setting.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "en-US"
+              },
+              "Cache-Control": {
+                "description": "Cache Control. Value is always 'no-cache, no-store, must-revalidate.'",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache, no-store, must-revalidate"
+              },
+              "Pragma": {
+                "description": "Pragma. Value is always 'no-cache'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache"
+              },
+              "Citrix-FilterScope": {
+                "description": "Optional filter scope for getting scoped objects.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "b79aadf4-a0e6-11eb-bcbc-0242ac130002"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "nullable": true,
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/JobResponseModel"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Async request was accepted and is being processed.",
+            "headers": {
+              "Location": {
+                "description": "Location where the async job completion status can be queried.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Jobs/{id}"
+              },
+              "Citrix-TransactionId": {
+                "description": "Transaction ID that is either provided by caller with the same request header or newly created.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "57AB53D9-589A-4AA8-8879-6B1DACF3A868"
+              },
+              "Content-Type": {
+                "description": "Response Content Type. Value is always 'application/json'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "X-Content-Type-Options": {
+                "description": "Content type options. Value is always 'nosniff'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "nosniff"
+              },
+              "Content-Language": {
+                "description": "Content language. Value is either 'en-US' or based on client language setting.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "en-US"
+              },
+              "Cache-Control": {
+                "description": "Cache Control. Value is always 'no-cache, no-store, must-revalidate.'",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache, no-store, must-revalidate"
+              },
+              "Pragma": {
+                "description": "Pragma. Value is always 'no-cache'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache"
+              },
+              "Citrix-FilterScope": {
+                "description": "Optional filter scope for getting scoped objects.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "b79aadf4-a0e6-11eb-bcbc-0242ac130002"
+              }
+            }
+          },
+          "400": {
+            "description": "Caller passed an invalid input.",
+            "headers": {
+              "Citrix-TransactionId": {
+                "description": "Transaction ID that is either provided by caller with the same request header or newly created.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "57AB53D9-589A-4AA8-8879-6B1DACF3A868"
+              },
+              "Content-Type": {
+                "description": "Response Content Type. Value is always 'application/json'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "X-Content-Type-Options": {
+                "description": "Content type options. Value is always 'nosniff'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "nosniff"
+              },
+              "Content-Language": {
+                "description": "Content language. Value is either 'en-US' or based on client language setting.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "en-US"
+              },
+              "Cache-Control": {
+                "description": "Cache Control. Value is always 'no-cache, no-store, must-revalidate.'",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache, no-store, must-revalidate"
+              },
+              "Pragma": {
+                "description": "Pragma. Value is always 'no-cache'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache"
+              },
+              "Citrix-FilterScope": {
+                "description": "Optional filter scope for getting scoped objects.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "b79aadf4-a0e6-11eb-bcbc-0242ac130002"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "https://errors-api.cloud.com/common/outOfRange": {
+                    "value": {
+                      "type": "https://errors-api.cloud.com/common/outOfRange",
+                      "detail": "A parameter in the request is out of range",
+                      "parameters": [
+                        {
+                          "name": "property",
+                          "value": "startTime"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Caller did not present a valid bearer token.",
+            "headers": {
+              "Citrix-TransactionId": {
+                "description": "Transaction ID that is either provided by caller with the same request header or newly created.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "57AB53D9-589A-4AA8-8879-6B1DACF3A868"
+              },
+              "Content-Type": {
+                "description": "Response Content Type. Value is always 'application/json'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "X-Content-Type-Options": {
+                "description": "Content type options. Value is always 'nosniff'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "nosniff"
+              },
+              "Content-Language": {
+                "description": "Content language. Value is either 'en-US' or based on client language setting.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "en-US"
+              },
+              "Cache-Control": {
+                "description": "Cache Control. Value is always 'no-cache, no-store, must-revalidate.'",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache, no-store, must-revalidate"
+              },
+              "Pragma": {
+                "description": "Pragma. Value is always 'no-cache'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache"
+              },
+              "Citrix-FilterScope": {
+                "description": "Optional filter scope for getting scoped objects.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "b79aadf4-a0e6-11eb-bcbc-0242ac130002"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "https://errors-api.cloud.com/common/authentication": {
+                    "value": {
+                      "type": "https://errors-api.cloud.com/common/authentication",
+                      "detail": "Missing or invalid authentication details",
+                      "parameters": [
+                        {
+                          "name": "reason",
+                          "value": "missing"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Caller is not authorized to perform the operation.",
+            "headers": {
+              "Citrix-TransactionId": {
+                "description": "Transaction ID that is either provided by caller with the same request header or newly created.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "57AB53D9-589A-4AA8-8879-6B1DACF3A868"
+              },
+              "Content-Type": {
+                "description": "Response Content Type. Value is always 'application/json'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "X-Content-Type-Options": {
+                "description": "Content type options. Value is always 'nosniff'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "nosniff"
+              },
+              "Content-Language": {
+                "description": "Content language. Value is either 'en-US' or based on client language setting.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "en-US"
+              },
+              "Cache-Control": {
+                "description": "Cache Control. Value is always 'no-cache, no-store, must-revalidate.'",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache, no-store, must-revalidate"
+              },
+              "Pragma": {
+                "description": "Pragma. Value is always 'no-cache'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache"
+              },
+              "Citrix-FilterScope": {
+                "description": "Optional filter scope for getting scoped objects.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "b79aadf4-a0e6-11eb-bcbc-0242ac130002"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "https://errors-api.cloud.com/common/authorization": {
+                    "value": {
+                      "type": "https://errors-api.cloud.com/common/authorization",
+                      "detail": "Access denied",
+                      "parameters": [
+                        {
+                          "name": "entityType",
+                          "value": "https://identifiers-api.cloud.com/example/widget"
+                        },
+                        {
+                          "name": "id",
+                          "value": "guid1"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "A referenced entity was not found.",
+            "headers": {
+              "Citrix-TransactionId": {
+                "description": "Transaction ID that is either provided by caller with the same request header or newly created.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "57AB53D9-589A-4AA8-8879-6B1DACF3A868"
+              },
+              "Content-Type": {
+                "description": "Response Content Type. Value is always 'application/json'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "X-Content-Type-Options": {
+                "description": "Content type options. Value is always 'nosniff'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "nosniff"
+              },
+              "Content-Language": {
+                "description": "Content language. Value is either 'en-US' or based on client language setting.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "en-US"
+              },
+              "Cache-Control": {
+                "description": "Cache Control. Value is always 'no-cache, no-store, must-revalidate.'",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache, no-store, must-revalidate"
+              },
+              "Pragma": {
+                "description": "Pragma. Value is always 'no-cache'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache"
+              },
+              "Citrix-FilterScope": {
+                "description": "Optional filter scope for getting scoped objects.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "b79aadf4-a0e6-11eb-bcbc-0242ac130002"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "https://errors-api.cloud.com/common/notFound": {
+                    "value": {
+                      "type": "https://errors-api.cloud.com/common/notFound",
+                      "detail": "Widget not found",
+                      "parameters": [
+                        {
+                          "name": "entityType",
+                          "value": "https://identifiers-api.cloud.com/example/widget"
+                        },
+                        {
+                          "name": "id",
+                          "value": "guid1"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Caller must specify utf-8 charset with the Accept header.",
+            "headers": {
+              "Citrix-TransactionId": {
+                "description": "Transaction ID that is either provided by caller with the same request header or newly created.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "57AB53D9-589A-4AA8-8879-6B1DACF3A868"
+              },
+              "Content-Type": {
+                "description": "Response Content Type. Value is always 'application/json'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "X-Content-Type-Options": {
+                "description": "Content type options. Value is always 'nosniff'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "nosniff"
+              },
+              "Content-Language": {
+                "description": "Content language. Value is either 'en-US' or based on client language setting.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "en-US"
+              },
+              "Cache-Control": {
+                "description": "Cache Control. Value is always 'no-cache, no-store, must-revalidate.'",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache, no-store, must-revalidate"
+              },
+              "Pragma": {
+                "description": "Pragma. Value is always 'no-cache'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache"
+              },
+              "Citrix-FilterScope": {
+                "description": "Optional filter scope for getting scoped objects.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "b79aadf4-a0e6-11eb-bcbc-0242ac130002"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "https://errors-api.cloud.com/common/notAcceptable": {
+                    "value": {
+                      "type": "https://errors-api.cloud.com/common/notAcceptable",
+                      "detail": "Must accept application/json media type",
+                      "parameters": [
+                        {
+                          "name": "contentType",
+                          "value": "application/json"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Caller requested an invalid relation to be created or deleted.",
+            "headers": {
+              "Citrix-TransactionId": {
+                "description": "Transaction ID that is either provided by caller with the same request header or newly created.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "57AB53D9-589A-4AA8-8879-6B1DACF3A868"
+              },
+              "Content-Type": {
+                "description": "Response Content Type. Value is always 'application/json'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "X-Content-Type-Options": {
+                "description": "Content type options. Value is always 'nosniff'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "nosniff"
+              },
+              "Content-Language": {
+                "description": "Content language. Value is either 'en-US' or based on client language setting.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "en-US"
+              },
+              "Cache-Control": {
+                "description": "Cache Control. Value is always 'no-cache, no-store, must-revalidate.'",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache, no-store, must-revalidate"
+              },
+              "Pragma": {
+                "description": "Pragma. Value is always 'no-cache'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache"
+              },
+              "Citrix-FilterScope": {
+                "description": "Optional filter scope for getting scoped objects.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "b79aadf4-a0e6-11eb-bcbc-0242ac130002"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "https://errors-api.cloud.com/common/optimisticConcurrency": {
+                    "value": {
+                      "type": "https://errors-api.cloud.com/common/optimisticConcurrency",
+                      "detail": "Widget X was modified, please try your changes again",
+                      "parameters": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Caller must send request body in utf-8 and specify request Content-Type as utf-8.",
+            "headers": {
+              "Citrix-TransactionId": {
+                "description": "Transaction ID that is either provided by caller with the same request header or newly created.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "57AB53D9-589A-4AA8-8879-6B1DACF3A868"
+              },
+              "Content-Type": {
+                "description": "Response Content Type. Value is always 'application/json'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "X-Content-Type-Options": {
+                "description": "Content type options. Value is always 'nosniff'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "nosniff"
+              },
+              "Content-Language": {
+                "description": "Content language. Value is either 'en-US' or based on client language setting.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "en-US"
+              },
+              "Cache-Control": {
+                "description": "Cache Control. Value is always 'no-cache, no-store, must-revalidate.'",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache, no-store, must-revalidate"
+              },
+              "Pragma": {
+                "description": "Pragma. Value is always 'no-cache'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache"
+              },
+              "Citrix-FilterScope": {
+                "description": "Optional filter scope for getting scoped objects.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "b79aadf4-a0e6-11eb-bcbc-0242ac130002"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "https://errors-api.cloud.com/common/unsupportedMediaType": {
+                    "value": {
+                      "type": "https://errors-api.cloud.com/common/unsupportedMediaType",
+                      "detail": "Must use application/json;charset=utf-8 media type",
+                      "parameters": [
+                        {
+                          "name": "mediaType",
+                          "value": "application/xml"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Caller has made too many requests in a short period of time and is being rate-limited.",
+            "headers": {
+              "Citrix-TransactionId": {
+                "description": "Transaction ID that is either provided by caller with the same request header or newly created.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "57AB53D9-589A-4AA8-8879-6B1DACF3A868"
+              },
+              "Content-Type": {
+                "description": "Response Content Type. Value is always 'application/json'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "X-Content-Type-Options": {
+                "description": "Content type options. Value is always 'nosniff'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "nosniff"
+              },
+              "Content-Language": {
+                "description": "Content language. Value is either 'en-US' or based on client language setting.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "en-US"
+              },
+              "Cache-Control": {
+                "description": "Cache Control. Value is always 'no-cache, no-store, must-revalidate.'",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache, no-store, must-revalidate"
+              },
+              "Pragma": {
+                "description": "Pragma. Value is always 'no-cache'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache"
+              },
+              "Citrix-FilterScope": {
+                "description": "Optional filter scope for getting scoped objects.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "b79aadf4-a0e6-11eb-bcbc-0242ac130002"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "https://errors-api.cloud.com/common/rateLimitExceeded": {
+                    "value": {
+                      "type": "https://errors-api.cloud.com/common/rateLimitExceeded",
+                      "detail": "Rate limit exceeded; try again in 4 seconds",
+                      "parameters": [
+                        {
+                          "name": "retryDelay",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service is temporarily unable to process the request.  Caller may attempt the operation again, with exponential back-off.",
+            "headers": {
+              "Citrix-TransactionId": {
+                "description": "Transaction ID that is either provided by caller with the same request header or newly created.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "57AB53D9-589A-4AA8-8879-6B1DACF3A868"
+              },
+              "Content-Type": {
+                "description": "Response Content Type. Value is always 'application/json'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json"
+              },
+              "X-Content-Type-Options": {
+                "description": "Content type options. Value is always 'nosniff'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "nosniff"
+              },
+              "Content-Language": {
+                "description": "Content language. Value is either 'en-US' or based on client language setting.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "en-US"
+              },
+              "Cache-Control": {
+                "description": "Cache Control. Value is always 'no-cache, no-store, must-revalidate.'",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache, no-store, must-revalidate"
+              },
+              "Pragma": {
+                "description": "Pragma. Value is always 'no-cache'.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-cache"
+              },
+              "Citrix-FilterScope": {
+                "description": "Optional filter scope for getting scoped objects.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "b79aadf4-a0e6-11eb-bcbc-0242ac130002"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "example": {
+                  "https://errors-api.cloud.com/common/serviceUnavailable": {
+                    "value": {
+                      "type": "https://errors-api.cloud.com/common/serviceUnavailable",
+                      "detail": "Service is unavailable; try again in 4 seconds",
+                      "parameters": [
+                        {
+                          "name": "retryDelay",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+	"components": {
+		"schemas": {
+		"MachineResponseModelCollection": {
+			"title": "MachineResponseModelCollection",
+			"allOf": [
+			  {
+				"$ref": "#/components/schemas/CollectionModelOfMachineResponseModel"
+			  },
+			  {
+				"type": "object",
+				"description": "Response object for collections of MachineResponseMode.",
+				"additionalProperties": false
+			  }
+			]
+		  },
+		"CollectionModelOfMachineResponseModel": {
+			"title": "CollectionModel`1",
+			"type": "object",
+			"description": "Response object for collections of items.",
+			"additionalProperties": false,
+			"required": [
+			  "Items"
+			],
+			"properties": {
+			  "Items": {
+				"title": "MachineResponseModel[]",
+				"type": "array",
+				"description": "List of items.",
+				"items": {
+				  "$ref": "#/components/schemas/MachineResponseModel"
+				}
+			  },
+			  "ContinuationToken": {
+				"title": "String",
+				"type": "string",
+				"description": "If present, indicates to the caller that the query was not complete,\nand they should call the API again specifying the continuation token\nas a query parameter.",
+				"nullable": true
+			  },
+			  "TotalItems": {
+				"title": "Int32",
+				"type": "integer",
+				"description": "Indicates the total number of items in the collection, which may be\nmore than the number of Items returned, if there is a\nContinuationToken.  Only returned in the response to `$search` APIs.",
+				"format": "int32",
+				"nullable": true
+			  }
+			}
+		  },
+		"MachineResponseModel": {
+			"title": "MachineResponseModel",
+			"allOf": [
+			  {
+				"$ref": "#/components/schemas/MachineBaseResponseModel"
+			  },
+			  {
+				"type": "object",
+				"description": "Response model for machine.",
+				"additionalProperties": false,
+				"required": [
+				  "InMaintenanceMode",
+				  "DrainingUntilShutdown",
+				  "MachineType",
+				  "PowerState",
+				  "ProvisioningType",
+				  "SessionSupport",
+				  "Sid",
+				  "SummaryState",
+				  "Zone",
+				  "FaultState"
+				],
+				"properties": {
+				  "Uid": {
+					"title": "Int32",
+					"type": "integer",
+					"description": "DEPRECATED. Use Id.\nUsed to be: DesktopUid",
+					"format": "int32",
+					"deprecated": true,
+					"x-deprecatedMessage": "Should not use it.",
+					"nullable": true
+				  },
+				  "AgentVersion": {
+					"title": "String",
+					"type": "string",
+					"description": "Version of the Citrix Virtual Delivery Agent (VDA) installed on the machine.",
+					"nullable": true
+				  },
+				  "AllocationType": {
+					"description": "Describes how the machine is allocated to the user.",
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/AllocationType"
+					  }
+					]
+				  },
+				  "ApplicationsInUse": {
+					"title": "RefResponseModel[]",
+					"type": "array",
+					"description": "List of applications in use in the session.",
+					"nullable": true,
+					"items": {
+					  "$ref": "#/components/schemas/RefResponseModel"
+					}
+				  },
+				  "AssignedUsers": {
+					"title": "IdentityUserResponseModel[]",
+					"type": "array",
+					"description": "List of one or more users to whom the machine is assigned.\nOnly used when AllocationType\nis equal to Static.",
+					"nullable": true,
+					"items": {
+					  "$ref": "#/components/schemas/IdentityUserResponseModel"
+					}
+				  },
+				  "AssociatedUsers": {
+					"title": "IdentityUserResponseModel[]",
+					"type": "array",
+					"description": "The current user(s) for shared machines and the assigned users for private machines.",
+					"nullable": true,
+					"items": {
+					  "$ref": "#/components/schemas/IdentityUserResponseModel"
+					}
+				  },
+				  "AzureAdJoinedMode": {
+					"description": "The type of Azure AD Domain join that took place in VDA.",
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/AzureAdJoinedMode"
+					  }
+					]
+				  },
+				  "ContainerScopes": {
+					"title": "ContainerScopeResponseModel[]",
+					"type": "array",
+					"description": "Delegated admin scopes in which the containers of the\nmachine reside.",
+					"nullable": true,
+					"items": {
+					  "$ref": "#/components/schemas/ContainerScopeResponseModel"
+					}
+				  },
+				  "ControllerDnsName": {
+					"title": "String",
+					"type": "string",
+					"description": "The DNS host name of the controller that the machine is\nregistered to.",
+					"nullable": true
+				  },
+				  "DeliveryGroup": {
+					"description": "Delivery group which the machine is a member of.\nMay be null if the machine is not a member of a\ndelivery group.",
+					"nullable": true,
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/RefResponseModel"
+					  }
+					]
+				  },
+				  "DeliveryType": {
+					"description": "Denotes the type(s) of published resources which the machine may deliver.",
+					"nullable": true,
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/DeliveryKind"
+					  }
+					]
+				  },
+				  "Description": {
+					"title": "String",
+					"type": "string",
+					"description": "Description of the machine.",
+					"nullable": true
+				  },
+				  "DesktopConditions": {
+					"title": "DesktopCondition[]",
+					"type": "array",
+					"description": "List of outstanding desktop conditions for the machine.",
+					"nullable": true,
+					"items": {
+					  "$ref": "#/components/schemas/DesktopCondition"
+					}
+				  },
+				  "DnsName": {
+					"title": "String",
+					"type": "string",
+					"description": "The DNS host name of the machine.",
+					"nullable": true
+				  },
+				  "FunctionalLevel": {
+					"description": "Functional level of the machine, if known.",
+					"nullable": true,
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/FunctionalLevel"
+					  }
+					]
+				  },
+				  "Hosting": {
+					"description": "Details about the hosting of the machine, if the machine is hosted.",
+					"nullable": true,
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/MachineHostingResponseModel"
+					  }
+					]
+				  },
+				  "InMaintenanceMode": {
+					"title": "Boolean",
+					"type": "boolean",
+					"description": "Denotes if the machine is in maintenance mode.\nMachines in maintenance mode will not accept new sessions."
+				  },
+				  "DrainingUntilShutdown": {
+					"title": "Boolean",
+					"type": "boolean",
+					"description": "Denotes if the machine is placed to drain until shutdown"
+				  },
+				  "IPAddress": {
+					"title": "String",
+					"type": "string",
+					"description": "The IP address of the machine.",
+					"nullable": true
+				  },
+				  "IsAssigned": {
+					"title": "Boolean",
+					"type": "boolean",
+					"description": "Denotes whether a private desktop has been assigned to a user/users,\nor a client name/address. Users can be assigned explicitly or by\nassigning on first use of the machine.\nOnly relevant for privately assigned machines.",
+					"nullable": true
+				  },
+				  "MachineType": {
+					"description": "Type of machine.",
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/MachineType"
+					  }
+					]
+				  },
+				  "LastConnectionFailure": {
+					"description": "The reason for the last failed connection between a client and \nthe machine.",
+					"nullable": true,
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/ConnectionFailureReason"
+					  }
+					]
+				  },
+				  "LastConnectionTime": {
+					"title": "String",
+					"type": "string",
+					"description": "Time of the last detected connection attempt that either failed or succeeded.",
+					"nullable": true
+				  },
+				  "FormattedLastConnectionTime": {
+					"title": "String",
+					"type": "string",
+					"description": "Formatted time of the last detected connection attempt that either failed or succeeded.\nRFC 3339 compatible format.",
+					"nullable": true
+				  },
+				  "LastConnectionUser": {
+					"description": "The user that last attempted a connection with the machine.",
+					"nullable": true,
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/IdentityUserResponseModel"
+					  }
+					]
+				  },
+				  "LastDeregistrationReason": {
+					"description": "The reason for the last deregistration of the machine with\nthe broker.",
+					"nullable": true,
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/DeregistrationReason"
+					  }
+					]
+				  },
+				  "LastDeregistrationTime": {
+					"title": "String",
+					"type": "string",
+					"description": "Time of the last deregistration of the machine from the controller.",
+					"nullable": true
+				  },
+				  "FormattedLastDeregistrationTime": {
+					"title": "String",
+					"type": "string",
+					"description": "Formatted time of the last deregistration of the machine from the controller.\nRFC 3339 compatible format.",
+					"nullable": true
+				  },
+				  "LastErrorReason": {
+					"title": "String",
+					"type": "string",
+					"description": "The reason for the last error detected in the machine.",
+					"nullable": true
+				  },
+				  "LastErrorTime": {
+					"title": "String",
+					"type": "string",
+					"description": "The time of the last detected error.",
+					"nullable": true
+				  },
+				  "FormattedLastErrorTime": {
+					"title": "String",
+					"type": "string",
+					"description": "The formatted time of the last detected error.\nRFC 3339 compatible format.",
+					"nullable": true
+				  },
+				  "LoadIndex": {
+					"title": "Int32",
+					"type": "integer",
+					"description": "Gives current effective load index.\nOnly used when SessionSupport\nis equal to MultiSession.",
+					"format": "int32",
+					"nullable": true
+				  },
+				  "MachineUnavailableReason": {
+					"description": "Reason reported from the VDA showing why it is not yet available for use even though it is registered.",
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/MachineUnavailableReason"
+					  }
+					]
+				  },
+				  "OSType": {
+					"title": "String",
+					"type": "string",
+					"description": "A string that can be used to identify the operating system that is running on the machine.",
+					"nullable": true
+				  },
+				  "OSVersion": {
+					"title": "String",
+					"type": "string",
+					"description": "A string that can be used to identify the version of the operating system running on the machine, if known.",
+					"nullable": true
+				  },
+				  "PersistUserChanges": {
+					"description": "Describes if and how user changes are persisted.",
+					"nullable": true,
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/PersistChanges"
+					  }
+					]
+				  },
+				  "PowerActionPending": {
+					"title": "Boolean",
+					"type": "boolean",
+					"description": "Indicates if there are any pending power actions for the machine.\nOnly relevant for power-managed machines.",
+					"nullable": true
+				  },
+				  "PowerState": {
+					"description": "The current power state of the machine.",
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/PowerState"
+					  }
+					]
+				  },
+				  "ProvisioningType": {
+					"description": "Describes how the machine was provisioned.",
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/ProvisioningType"
+					  }
+					]
+				  },
+				  "PublishedApplications": {
+					"title": "String[]",
+					"type": "array",
+					"description": "Indicates the published applications.",
+					"nullable": true,
+					"items": {
+					  "title": "String",
+					  "type": "string"
+					}
+				  },
+				  "PublishedName": {
+					"title": "String",
+					"type": "string",
+					"description": "The name of the machine that is displayed in Receiver, if the\nmachine has been published.",
+					"nullable": true
+				  },
+				  "RegistrationState": {
+					"description": "Indicates the registration state of the machine.",
+					"nullable": true,
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/RegistrationState"
+					  }
+					]
+				  },
+				  "ScheduledReboot": {
+					"description": "Indicates the state of any scheduled reboot operation for a machine.",
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/ScheduledReboot"
+					  }
+					]
+				  },
+				  "SessionClientAddress": {
+					"title": "String",
+					"type": "string",
+					"description": "The IP address of the client connected to the session.",
+					"nullable": true
+				  },
+				  "SessionClientName": {
+					"title": "String",
+					"type": "string",
+					"description": "The host name of the client connected to the session.",
+					"nullable": true
+				  },
+				  "SessionClientVersion": {
+					"title": "String",
+					"type": "string",
+					"description": "The version of the Citrix Receiver running on the client connected to the session.",
+					"nullable": true
+				  },
+				  "SessionConnectedViaHostName": {
+					"title": "String",
+					"type": "string",
+					"description": "The host name of the incoming connection. This is usually a gateway, router or client.",
+					"nullable": true
+				  },
+				  "SessionConnectedViaIP": {
+					"title": "String",
+					"type": "string",
+					"description": "The IP address of the incoming connection This is usually a gateway, router or client.",
+					"nullable": true
+				  },
+				  "SessionCount": {
+					"title": "Int32",
+					"type": "integer",
+					"description": "Number of sessions running on the machine.",
+					"format": "int32",
+					"nullable": true
+				  },
+				  "SessionLaunchedViaHostName": {
+					"title": "String",
+					"type": "string",
+					"description": "The host name of the StoreFront server used to launch the session.",
+					"nullable": true
+				  },
+				  "SessionLaunchedViaIP": {
+					"title": "String",
+					"type": "string",
+					"description": "The IP address of the StoreFront server used to launch the session.",
+					"nullable": true
+				  },
+				  "SessionProtocol": {
+					"description": "The protocol that the session is using.",
+					"nullable": true,
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/ProtocolType"
+					  }
+					]
+				  },
+				  "SessionSecureIcaActive": {
+					"title": "Boolean",
+					"type": "boolean",
+					"description": "Indicates whether SecureICA is active on the session.",
+					"nullable": true
+				  },
+				  "SessionSmartAccessTags": {
+					"title": "String[]",
+					"type": "array",
+					"description": "The Smart Access tags for this session.",
+					"nullable": true,
+					"items": {
+					  "title": "String",
+					  "type": "string"
+					}
+				  },
+				  "SessionStartTime": {
+					"title": "String",
+					"type": "string",
+					"description": "The time indicates when the session was started.",
+					"nullable": true
+				  },
+				  "FormattedSessionStartTime": {
+					"title": "String",
+					"type": "string",
+					"description": "The formatted time indicates when the session was started.\nRFC 3339 compatible format.",
+					"nullable": true
+				  },
+				  "SessionState": {
+					"description": "The state of the session.",
+					"nullable": true,
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/SessionState"
+					  }
+					]
+				  },
+				  "SessionStateChangeTime": {
+					"title": "String",
+					"type": "string",
+					"description": "The time of the most recent state change for the session.",
+					"nullable": true
+				  },
+				  "FormattedSessionStateChangeTime": {
+					"title": "String",
+					"type": "string",
+					"description": "The formatted time of the most recent state change for the session.\nRFC 3339 compatible format.",
+					"nullable": true
+				  },
+				  "SessionSupport": {
+					"description": "Indicates the session support of the machine.",
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/SessionSupport"
+					  }
+					]
+				  },
+				  "SessionUserName": {
+					"title": "String",
+					"type": "string",
+					"description": "The session user name.",
+					"nullable": true
+				  },
+				  "Sid": {
+					"title": "String",
+					"type": "string",
+					"description": "The SID of the machine.\nUsed to be: DesktopSid or SID (based on the context)",
+					"minLength": 1
+				  },
+				  "SummaryState": {
+					"description": "Indicates the overall state of the desktop associated with the machine. The overall state is a result of other more specific states such as session state, registration state and power state.",
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/SummaryState"
+					  }
+					]
+				  },
+				  "WillShutdownAfterUse": {
+					"title": "Boolean",
+					"type": "boolean",
+					"description": "Flag indicating if this machine is tainted and will be shut down\nafter all sessions on the machine have ended. This flag is only\never non-null on power-managed, single-session machines.",
+					"nullable": true
+				  },
+				  "WindowsConnectionSetting": {
+					"description": "The logon mode reported by Windows itself (multi-session machines\nonly). For single-session machines the value is always hardwired\nto LogonEnabled.",
+					"nullable": true,
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/WindowsConnectionSetting"
+					  }
+					]
+				  },
+				  "Zone": {
+					"description": "The zone in which the machine is located.",
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/RefResponseModel"
+					  }
+					]
+				  },
+				  "SupportedPowerActions": {
+					"title": "SupportedPowerAction[]",
+					"type": "array",
+					"description": "A list of power actions supported by this machine.",
+					"nullable": true,
+					"items": {
+					  "$ref": "#/components/schemas/SupportedPowerAction"
+					}
+				  },
+				  "FaultState": {
+					"description": "Summary state of any current fault state of the machine.",
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/FaultState"
+					  }
+					]
+				  },
+				  "ContainerMetadata": {
+					"description": "The metadata of Container.",
+					"nullable": true,
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/ContainerMetadataModel"
+					  }
+					]
+				  },
+				  "Tags": {
+					"title": "String[]",
+					"type": "array",
+					"description": "The tags for this machine.",
+					"nullable": true,
+					"items": {
+					  "title": "String",
+					  "type": "string"
+					}
+				  },
+				  "UpgradeType": {
+					"description": "VDA upgrade type of this machine.",
+					"nullable": true,
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/VdaUpgradeType"
+					  }
+					]
+				  },
+				  "UpgradeState": {
+					"description": "Upgrade state of this machine.",
+					"nullable": true,
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/VdaUpgradeState"
+					  }
+					]
+				  },
+				  "UpgradeDetail": {
+					"description": "Detail about the VDA upgrade schedule status object associated\nwith this machine.",
+					"nullable": true,
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/MachineUpgradeDetail"
+					  }
+					]
+				  }
+				}
+			  }
+			]
+		  },
+		"MachineBaseResponseModel": {
+			"title": "MachineBaseResponseModel",
+			"type": "object",
+			"additionalProperties": false,
+			"required": [
+			  "Id"
+			],
+			"properties": {
+			  "Id": {
+				"title": "String",
+				"type": "string",
+				"description": "Id of machine.\nUsed to be: DesktopUid (and wasn't globally unique)\nOR UUID, depending on context\nNeeds to be globally unique\nMight be constructed from site ID + internal Uid?  or use uuid",
+				"minLength": 1
+			  },
+			  "MachineCatalog": {
+				"description": "Machine catalog which the machine is a member of.",
+				"nullable": true,
+				"oneOf": [
+				  {
+					"$ref": "#/components/schemas/RefResponseModel"
+				  }
+				]
+			  },
+			  "Name": {
+				"title": "String",
+				"type": "string",
+				"description": "DNS host name of the machine.\nUsed to be: MachineName",
+				"nullable": true
+			  }
+			}
+		  },
+		"RefResponseModel": {
+			"title": "RefResponseModel",
+			"type": "object",
+			"description": "Response object for an object reference.",
+			"additionalProperties": false,
+			"properties": {
+			  "Id": {
+				"title": "String",
+				"type": "string",
+				"description": "Id of the object.\nNeeds to be globally unique\nThis is likely to contain a guid but the property type should be string for future flexibility",
+				"nullable": true
+			  },
+			  "Uid": {
+				"title": "Int32",
+				"type": "integer",
+				"description": "DEPRECATED. Use Id.",
+				"format": "int32",
+				"nullable": true
+			  },
+			  "Name": {
+				"title": "String",
+				"type": "string",
+				"description": "Name of the object.",
+				"nullable": true
+			  }
+			}
+		  },
+		"AllocationType": {
+			"title": "AllocationType",
+			"type": "string",
+			"description": "Machine allocation type, indicating how machines are allocated to users.",
+			"x-enumNames": [
+			  "Unknown",
+			  "Static",
+			  "Random"
+			],
+			"enum": [
+			  "Unknown",
+			  "Static",
+			  "Random"
+			]
+		  },
+		"IdentityUserResponseModel": {
+			"title": "IdentityUserResponseModel",
+			"allOf": [
+			  {
+				"$ref": "#/components/schemas/IdentityBaseResponseModel"
+			  },
+			  {
+				"type": "object",
+				"description": "The User/Group identity object.",
+				"additionalProperties": false,
+				"required": [
+				  "DisplayName",
+				  "PropertiesFetched"
+				],
+				"properties": {
+				  "DisplayName": {
+					"title": "String",
+					"type": "string",
+					"description": "Display name of the user or group.\nUsually something like \"John Q. Doe\".",
+					"minLength": 1
+				  },
+				  "SamName": {
+					"title": "String",
+					"type": "string",
+					"description": "Fully qualified sAMAccountName of the User or Group object (including domain).",
+					"nullable": true
+				  },
+				  "SamAccountName": {
+					"title": "String",
+					"type": "string",
+					"description": "Unqualified SAM name (Directory property) of the User or Group object. \nDoes not include the domain. The sAMAccountName is unique within a domain.",
+					"nullable": true
+				  },
+				  "CommonName": {
+					"title": "String",
+					"type": "string",
+					"description": "The common name associated with the User or Group object.",
+					"nullable": true
+				  },
+				  "PrincipalName": {
+					"title": "String",
+					"type": "string",
+					"description": "The user principal name of a User object.\nThe UPN must be unique among all security principal\nobjects within the directory forest.",
+					"nullable": true
+				  },
+				  "Oid": {
+					"title": "String",
+					"type": "string",
+					"description": "The Object Identifier associated with the User or Group object.",
+					"nullable": true
+				  },
+				  "Sid": {
+					"title": "String",
+					"type": "string",
+					"description": "The Security Identifier associated with the User or Group object.",
+					"nullable": true
+				  },
+				  "GroupSids": {
+					"title": "IList`1",
+					"type": "array",
+					"description": "Security Identifiers of groups of which the object is a member.",
+					"nullable": true,
+					"items": {
+					  "title": "String",
+					  "type": "string"
+					}
+				  },
+				  "DenyOnlySids": {
+					"title": "IList`1",
+					"type": "array",
+					"description": "Security Identifiers of resources to which the object is explicitly denied access.",
+					"nullable": true,
+					"items": {
+					  "title": "String",
+					  "type": "string"
+					}
+				  },
+				  "PasswordCanExpire": {
+					"title": "Boolean",
+					"type": "boolean",
+					"description": "Indicates whether the password can expire on this User object.",
+					"nullable": true
+				  },
+				  "DaysUntilPasswordExpiry": {
+					"title": "Int64",
+					"type": "integer",
+					"description": "Indicates the number of days before the password can expire on this User object.",
+					"format": "int64",
+					"nullable": true
+				  },
+				  "IsBuiltIn": {
+					"title": "Boolean",
+					"type": "boolean",
+					"description": "Indicates whether this a built-in object.",
+					"nullable": true
+				  },
+				  "IsGroup": {
+					"title": "Boolean",
+					"type": "boolean",
+					"description": "Indicates whether this is a User or Group object.",
+					"nullable": true
+				  },
+				  "Name": {
+					"title": "String",
+					"type": "string",
+					"description": "The name of the User or Group object.",
+					"nullable": true
+				  },
+				  "StreetAddress": {
+					"title": "String",
+					"type": "string",
+					"description": "The street address associated with the User object.",
+					"nullable": true
+				  },
+				  "City": {
+					"title": "String",
+					"type": "string",
+					"description": "The city associated with the User object.",
+					"nullable": true
+				  },
+				  "State": {
+					"title": "String",
+					"type": "string",
+					"description": "The state associated with the User object.",
+					"nullable": true
+				  },
+				  "Country": {
+					"title": "String",
+					"type": "string",
+					"description": "The country associated with the user object.",
+					"nullable": true
+				  },
+				  "Mail": {
+					"title": "String",
+					"type": "string",
+					"description": "The e-mail address associated with the user object.",
+					"nullable": true
+				  },
+				  "TelephoneNumber": {
+					"title": "String",
+					"type": "string",
+					"description": "The telephone number associated with the user object.",
+					"nullable": true
+				  },
+				  "HomePhone": {
+					"title": "String",
+					"type": "string",
+					"description": "The home telephone number associated with the user object.",
+					"nullable": true
+				  },
+				  "Mobile": {
+					"title": "String",
+					"type": "string",
+					"description": "The mobile telephone number associated with the user object.",
+					"nullable": true
+				  },
+				  "Enabled": {
+					"title": "Boolean",
+					"type": "boolean",
+					"description": "Indicates whether the User object is disabled.\nNOTE that this is opposite of the low-level SDK, which has \"IsDisabled\".\nBy changing to \"Enabled\" it avoids a confusing double-negative.  It also\nmatches all other SDK objects by using \"Enabled\" rather than \"IsEnabled\".",
+					"nullable": true
+				  },
+				  "Locked": {
+					"title": "Boolean",
+					"type": "boolean",
+					"description": "Indicates whether the User object is locked.",
+					"nullable": true
+				  },
+				  "PropertiesFetched": {
+					"title": "UInt32",
+					"type": "integer",
+					"description": "Properties fetched and populated in the User or Group object.  This is a bitfield indicating the fetched properties."
+				  },
+				  "Claims": {
+					"description": "The universal claims of the user object.",
+					"nullable": true,
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/IdentityClaimsResponseModel"
+					  }
+					]
+				  },
+				  "Directory": {
+					"description": "The directory context of the user object.",
+					"nullable": true,
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/IdentityDirectoryResponseModel"
+					  }
+					]
+				  }
+				}
+			  }
+			]
+		  },
+		"IdentityBaseResponseModel": {
+			"title": "IdentityBaseResponseModel",
+			"type": "object",
+			"description": "Base Identity object for User, Machine and Container Identity objects.",
+			"additionalProperties": false,
+			"properties": {
+			  "Domain": {
+				"title": "String",
+				"type": "string",
+				"description": "The Domain the object belongs to.\nNOTE: When doing a forest level search, the domain\nproperty is populated only if the object contains a SID\nand the SID was requested as property to be fetched.",
+				"nullable": true
+			  },
+			  "Forest": {
+				"title": "String",
+				"type": "string",
+				"description": "The forest the object belongs to.",
+				"nullable": true
+			  },
+			  "Guid": {
+				"title": "String",
+				"type": "string",
+				"description": "The GUID of the object, the GUID is unique\nacross the enterprise and anywhere else.",
+				"nullable": true
+			  },
+			  "DistinguishedName": {
+				"title": "String",
+				"type": "string",
+				"description": "The Distinguished name of the object. Distinguished names (DNs)\nare unique and they unambiguously identify objects in the directory.",
+				"nullable": true
+			  },
+			  "CanonicalName": {
+				"title": "String",
+				"type": "string",
+				"description": "The unique distinguished name of the object in canonical format.",
+				"nullable": true
+			  },
+			  "PossibleLookupFailure": {
+				"title": "Boolean",
+				"type": "boolean",
+				"description": "Set to True during a bulk identity lookup operation.\nFor individual identity lookup, usually an exception will be thrown."
+			  },
+			  "DirectoryServer": {
+				"title": "String",
+				"type": "string",
+				"description": "Domain controller that performed the add/update operation on this object",
+				"nullable": true
+			  }
+			}
+		  },
+		"IdentityClaimsResponseModel": {
+			"title": "IdentityClaimsResponseModel",
+			"type": "object",
+			"description": "The identity claims object.",
+			"additionalProperties": false,
+			"properties": {
+			  "Oid": {
+				"title": "String",
+				"type": "string",
+				"description": "Oid claim of the identity.",
+				"nullable": true
+			  },
+			  "Sid": {
+				"title": "String",
+				"type": "string",
+				"description": "Sid claim of the identity.",
+				"nullable": true
+			  },
+			  "Upn": {
+				"title": "String",
+				"type": "string",
+				"description": "Upn claim of the identity.",
+				"nullable": true
+			  },
+			  "Email": {
+				"title": "String",
+				"type": "string",
+				"description": "Email claim of the identity.",
+				"nullable": true
+			  }
+			}
+		  },
+		"IdentityDirectoryResponseModel": {
+			"title": "IdentityDirectoryResponseModel",
+			"type": "object",
+			"description": "The universal identity directory object.",
+			"additionalProperties": false,
+			"properties": {
+			  "Forest": {
+				"title": "String",
+				"type": "string",
+				"description": "Forest of the directory.",
+				"nullable": true
+			  },
+			  "Domain": {
+				"title": "String",
+				"type": "string",
+				"description": "Domain of the directory.",
+				"nullable": true
+			  },
+			  "Tenant": {
+				"title": "String",
+				"type": "string",
+				"description": "Tenant of the directory.",
+				"nullable": true
+			  },
+			  "IdentityProvider": {
+				"description": "Identity provider type of the directory.",
+				"oneOf": [
+				  {
+					"$ref": "#/components/schemas/IdentityProviderType"
+				  }
+				]
+			  }
+			}
+		  },
+		"IdentityProviderType": {
+			"title": "IdentityProviderType",
+			"type": "string",
+			"description": "The type of identity provider.",
+			"x-enumNames": [
+			  "Unknown",
+			  "AD",
+			  "AzureAD",
+			  "Okta",
+			  "Google",
+			  "All"
+			],
+			"enum": [
+			  "Unknown",
+			  "AD",
+			  "AzureAD",
+			  "Okta",
+			  "Google",
+			  "All"
+			]
+		  },
+		"AzureAdJoinedMode": {
+			"title": "AzureAdJoinedMode",
+			"type": "string",
+			"description": "Azure AD joined type for machines",
+			"x-enumNames": [
+			  "Unknown",
+			  "NotAadJoined",
+			  "HybridAadJoined",
+			  "PureAadJoined"
+			],
+			"enum": [
+			  "Unknown",
+			  "NotAadJoined",
+			  "HybridAadJoined",
+			  "PureAadJoined"
+			]
+		  },
+		"ContainerScopeResponseModel": {
+			"title": "ContainerScopeResponseModel",
+			"type": "object",
+			"description": "Response object for delegated admin container scopes.",
+			"additionalProperties": false,
+			"required": [
+			  "Scopes",
+			  "ScopeType"
+			],
+			"properties": {
+			  "Scopes": {
+				"title": "ScopeResponseModel[]",
+				"type": "array",
+				"description": "List of delegated admin scopes.",
+				"items": {
+				  "$ref": "#/components/schemas/ScopeResponseModel"
+				}
+			  },
+			  "ScopeType": {
+				"description": "Type of the container providing the scopes.",
+				"oneOf": [
+				  {
+					"$ref": "#/components/schemas/ContainerScopeType"
+				  }
+				]
+			  }
+			}
+		  },
+		"ContainerScopeType": {
+			"title": "ContainerScopeType",
+			"type": "string",
+			"description": "The type of a container, relevant to delegated administration.",
+			"x-enumNames": [
+			  "Unknown",
+			  "DeliveryGroup",
+			  "ApplicationGroup",
+			  "MachineCatalog"
+			],
+			"enum": [
+			  "Unknown",
+			  "DeliveryGroup",
+			  "ApplicationGroup",
+			  "MachineCatalog"
+			]
+		  },
+		"DeliveryKind": {
+			"title": "DeliveryKind",
+			"type": "string",
+			"description": "Types of resources delivered from a delivery group.",
+			"x-enumNames": [
+			  "Unknown",
+			  "DesktopsOnly",
+			  "DesktopsAndApps",
+			  "AppsOnly"
+			],
+			"enum": [
+			  "Unknown",
+			  "DesktopsOnly",
+			  "DesktopsAndApps",
+			  "AppsOnly"
+			]
+		  },
+		"DesktopCondition": {
+			"title": "DesktopCondition",
+			"type": "string",
+			"description": "Desktop condition values, indicating warnings.",
+			"x-enumNames": [
+			  "Unknown",
+			  "CPU",
+			  "ICALatency",
+			  "UPMLogonTime"
+			],
+			"enum": [
+			  "Unknown",
+			  "CPU",
+			  "ICALatency",
+			  "UPMLogonTime"
+			]
+		  },
+		"FunctionalLevel": {
+			"title": "FunctionalLevel",
+			"type": "string",
+			"description": "Functional level for VDAs.",
+			"x-enumNames": [
+			  "Unknown",
+			  "L5",
+			  "LMIN",
+			  "L7",
+			  "L7_6",
+			  "L7_7",
+			  "L7_8",
+			  "L7_9",
+			  "L7_20",
+			  "L7_25",
+			  "L7_30",
+			  "L7_34",
+			  "LMAX"
+			],
+			"enum": [
+			  "Unknown",
+			  "L5",
+			  "LMIN",
+			  "L7",
+			  "L7_6",
+			  "L7_7",
+			  "L7_8",
+			  "L7_9",
+			  "L7_20",
+			  "L7_25",
+			  "L7_30",
+			  "L7_34",
+			  "LMAX"
+			]
+		  },
+		"MachineHostingResponseModel": {
+			"title": "MachineHostingResponseModel",
+			"type": "object",
+			"description": "Response model for machine hosting details.",
+			"additionalProperties": false,
+			"properties": {
+			  "HostedMachineId": {
+				"title": "String",
+				"type": "string",
+				"description": "Unique ID within the hosting unit of the target managed machine.",
+				"nullable": true
+			  },
+			  "HostedMachineName": {
+				"title": "String",
+				"type": "string",
+				"description": "The friendly name of a hosted machine as used by its hypervisor.\nThis is not necessarily the DNS name of the machine.",
+				"nullable": true
+			  },
+			  "HostingServerName": {
+				"title": "String",
+				"type": "string",
+				"description": "DNS name of the hypervisor that is hosting the machine.",
+				"nullable": true
+			  },
+			  "LastHostingUpdateTime": {
+				"title": "String",
+				"type": "string",
+				"description": "Time of last update to any hosting data (such as power\nstates) for this machine reported by the hypervisor\nconnection.",
+				"nullable": true
+			  },
+			  "FormattedLastHostingUpdateTime": {
+				"title": "String",
+				"type": "string",
+				"description": "Formatted time of last update to any hosting data (such as power\nstates) for this machine reported by the hypervisor\nconnection.\nRFC 3339 compatible format.",
+				"nullable": true
+			  },
+			  "HypervisorConnection": {
+				"description": "The hypervisor connection that the machine’s hosting server\nis accessed through.",
+				"nullable": true,
+				"oneOf": [
+				  {
+					"$ref": "#/components/schemas/RefResponseModel"
+				  }
+				]
+			  },
+			  "ImageOutOfDate": {
+				"title": "Boolean",
+				"type": "boolean",
+				"description": "Indicates whether the machine image matches the latest\nimage specified for the machine catalog."
+			  }
+			}
+		  },
+		"MachineType": {
+			"title": "MachineType",
+			"type": "string",
+			"description": "Types of machine.",
+			"x-enumNames": [
+			  "Unknown",
+			  "Virtual",
+			  "Physical"
+			],
+			"enum": [
+			  "Unknown",
+			  "Virtual",
+			  "Physical"
+			]
+		  },
+		"ConnectionFailureReason": {
+			"title": "ConnectionFailureReason",
+			"type": "string",
+			"description": "The reason why the last connection failure occurred.",
+			"x-enumNames": [
+			  "Unknown",
+			  "None",
+			  "SessionPreparation",
+			  "RegistrationTimeout",
+			  "ConnectionTimeout",
+			  "Licensing",
+			  "Ticketing",
+			  "Other"
+			],
+			"enum": [
+			  "Unknown",
+			  "None",
+			  "SessionPreparation",
+			  "RegistrationTimeout",
+			  "ConnectionTimeout",
+			  "Licensing",
+			  "Ticketing",
+			  "Other"
+			]
+		  },
+		"DeregistrationReason": {
+			"title": "DeregistrationReason",
+			"type": "string",
+			"description": "Reasons why a machine may have deregistered from a broker.",
+			"x-enumNames": [
+			  "Unknown",
+			  "AgentShutdown",
+			  "AgentSuspended",
+			  "AgentRequested",
+			  "IncompatibleVersion",
+			  "AgentAddressResolutionFailed",
+			  "AgentNotContactable",
+			  "AgentWrongActiveDirectoryOU",
+			  "EmptyRegistrationRequest",
+			  "MissingRegistrationCapabilities",
+			  "MissingAgentVersion",
+			  "InconsistentRegistrationCapabilities",
+			  "NotLicensedForFeature",
+			  "OSNotCompatibleWithDdc",
+			  "VMNotCompatibleWithDdc",
+			  "UnsupportedCredentialSecurityVersion",
+			  "InvalidRegistrationRequest",
+			  "SingleMultiSessionMismatch",
+			  "FunctionalLevelTooLowForCatalog",
+			  "FunctionalLevelTooLowForDesktopGroup",
+			  "PowerOff",
+			  "DesktopRestart",
+			  "DesktopRemoved",
+			  "AgentRejectedSettingsUpdate",
+			  "SendSettingsFailure",
+			  "SessionAuditFailure",
+			  "SessionPrepareFailure",
+			  "ContactLost",
+			  "SettingsCreationFailure",
+			  "UnknownError",
+			  "BrokerRegistrationLimitReached",
+			  "RegistrationStateMismatch"
+			],
+			"enum": [
+			  "Unknown",
+			  "AgentShutdown",
+			  "AgentSuspended",
+			  "AgentRequested",
+			  "IncompatibleVersion",
+			  "AgentAddressResolutionFailed",
+			  "AgentNotContactable",
+			  "AgentWrongActiveDirectoryOU",
+			  "EmptyRegistrationRequest",
+			  "MissingRegistrationCapabilities",
+			  "MissingAgentVersion",
+			  "InconsistentRegistrationCapabilities",
+			  "NotLicensedForFeature",
+			  "OSNotCompatibleWithDdc",
+			  "VMNotCompatibleWithDdc",
+			  "UnsupportedCredentialSecurityVersion",
+			  "InvalidRegistrationRequest",
+			  "SingleMultiSessionMismatch",
+			  "FunctionalLevelTooLowForCatalog",
+			  "FunctionalLevelTooLowForDesktopGroup",
+			  "PowerOff",
+			  "DesktopRestart",
+			  "DesktopRemoved",
+			  "AgentRejectedSettingsUpdate",
+			  "SendSettingsFailure",
+			  "SessionAuditFailure",
+			  "SessionPrepareFailure",
+			  "ContactLost",
+			  "SettingsCreationFailure",
+			  "UnknownError",
+			  "BrokerRegistrationLimitReached",
+			  "RegistrationStateMismatch"
+			]
+		  },
+		"MachineUnavailableReason": {
+			"title": "MachineUnavailableReason",
+			"type": "string",
+			"description": "Azure AD join type for machines",
+			"x-enumNames": [
+			  "Unknown",
+			  "None",
+			  "LoadManagementInitializing",
+			  "PvdInitializing",
+			  "PvdFailed",
+			  "GctConnectionInitializing",
+			  "AzureAdJoinInitializing"
+			],
+			"enum": [
+			  "Unknown",
+			  "None",
+			  "LoadManagementInitializing",
+			  "PvdInitializing",
+			  "PvdFailed",
+			  "GctConnectionInitializing",
+			  "AzureAdJoinInitializing"
+			]
+		  },
+		"PersistChanges": {
+			"title": "PersistChanges",
+			"type": "string",
+			"description": "Methods by which changes are persisted on a machine.",
+			"x-enumNames": [
+			  "Unknown",
+			  "Discard",
+			  "OnLocal",
+			  "OnPvd"
+			],
+			"enum": [
+			  "Unknown",
+			  "Discard",
+			  "OnLocal",
+			  "OnPvd"
+			]
+		  },
+		"PowerState": {
+			"title": "PowerState",
+			"type": "string",
+			"description": "Power state of a machine.",
+			"x-enumNames": [
+			  "Unknown",
+			  "Unmanaged",
+			  "Unavailable",
+			  "Off",
+			  "On",
+			  "Suspended",
+			  "TurningOn",
+			  "TurningOff",
+			  "Suspending",
+			  "Resuming",
+			  "NotSupported",
+			  "VirtualMachineNotFound"
+			],
+			"enum": [
+			  "Unknown",
+			  "Unmanaged",
+			  "Unavailable",
+			  "Off",
+			  "On",
+			  "Suspended",
+			  "TurningOn",
+			  "TurningOff",
+			  "Suspending",
+			  "Resuming",
+			  "NotSupported",
+			  "VirtualMachineNotFound"
+			]
+		  },
+		"ProvisioningType": {
+			"title": "ProvisioningType",
+			"type": "string",
+			"description": "Types of machine provisioning.",
+			"x-enumNames": [
+			  "Unknown",
+			  "Manual",
+			  "MCS",
+			  "MCSImport",
+			  "PVS"
+			],
+			"enum": [
+			  "Unknown",
+			  "Manual",
+			  "MCS",
+			  "MCSImport",
+			  "PVS"
+			]
+		  },
+		"RegistrationState": {
+			"title": "RegistrationState",
+			"type": "string",
+			"description": "Machine registration states.",
+			"x-enumNames": [
+			  "Unknown",
+			  "Unregistered",
+			  "Initializing",
+			  "Registered",
+			  "AgentError"
+			],
+			"enum": [
+			  "Unknown",
+			  "Unregistered",
+			  "Initializing",
+			  "Registered",
+			  "AgentError"
+			]
+		  },
+		"ScheduledReboot": {
+			"title": "ScheduledReboot",
+			"type": "string",
+			"description": "Scheduled reboot states.",
+			"x-enumNames": [
+			  "Unknown",
+			  "None",
+			  "Pending",
+			  "Draining",
+			  "InProgress",
+			  "Natural"
+			],
+			"enum": [
+			  "Unknown",
+			  "None",
+			  "Pending",
+			  "Draining",
+			  "InProgress",
+			  "Natural"
+			]
+		  },
+		"ProtocolType": {
+			"title": "ProtocolType",
+			"type": "string",
+			"description": "Protocol types.",
+			"x-enumNames": [
+			  "Unknown",
+			  "Hdx",
+			  "Rdp",
+			  "Console"
+			],
+			"enum": [
+			  "Unknown",
+			  "Hdx",
+			  "Rdp",
+			  "Console"
+			]
+		  },
+		"SessionState": {
+			"title": "SessionState",
+			"type": "string",
+			"description": "Session states.",
+			"x-enumNames": [
+			  "Unknown",
+			  "Connected",
+			  "Active",
+			  "Disconnected"
+			],
+			"enum": [
+			  "Unknown",
+			  "Connected",
+			  "Active",
+			  "Disconnected"
+			]
+		  },
+		"SessionSupport": {
+			"title": "SessionSupport",
+			"type": "string",
+			"description": "Quantity of sessions supported per-machine.",
+			"x-enumNames": [
+			  "Unknown",
+			  "SingleSession",
+			  "MultiSession"
+			],
+			"enum": [
+			  "Unknown",
+			  "SingleSession",
+			  "MultiSession"
+			]
+		  },
+		"SummaryState": {
+			"title": "SummaryState",
+			"type": "string",
+			"description": "Overall summary state of the desktop associated with a machine.",
+			"x-enumNames": [
+			  "Unknown",
+			  "Off",
+			  "Unregistered",
+			  "Available",
+			  "Disconnected",
+			  "InUse",
+			  "Preparing"
+			],
+			"enum": [
+			  "Unknown",
+			  "Off",
+			  "Unregistered",
+			  "Available",
+			  "Disconnected",
+			  "InUse",
+			  "Preparing"
+			]
+		  },
+		"WindowsConnectionSetting": {
+			"title": "WindowsConnectionSetting",
+			"type": "string",
+			"description": "Windows connection setting.",
+			"x-enumNames": [
+			  "Unknown",
+			  "LogonEnabled",
+			  "Draining",
+			  "DrainingUntilRestart",
+			  "LogonDisabled"
+			],
+			"enum": [
+			  "Unknown",
+			  "LogonEnabled",
+			  "Draining",
+			  "DrainingUntilRestart",
+			  "LogonDisabled"
+			]
+		  },
+		"SupportedPowerAction": {
+			"title": "SupportedPowerAction",
+			"type": "string",
+			"description": "Power actions which may be supported by a machine.",
+			"x-enumNames": [
+			  "Unknown",
+			  "PowerOn",
+			  "PowerOff",
+			  "SuspendResume",
+			  "Restart",
+			  "Reset",
+			  "Shutdown"
+			],
+			"enum": [
+			  "Unknown",
+			  "PowerOn",
+			  "PowerOff",
+			  "SuspendResume",
+			  "Restart",
+			  "Reset",
+			  "Shutdown"
+			]
+		  },
+		"FaultState": {
+			"title": "FaultState",
+			"type": "string",
+			"description": "Fault states for machines.",
+			"x-enumNames": [
+			  "Unknown",
+			  "None",
+			  "FailedToStart",
+			  "StuckOnBoot",
+			  "Unregistered",
+			  "MaxCapacity"
+			],
+			"enum": [
+			  "Unknown",
+			  "None",
+			  "FailedToStart",
+			  "StuckOnBoot",
+			  "Unregistered",
+			  "MaxCapacity"
+			]
+		  },
+		"ContainerMetadataModel": {
+			"title": "ContainerMetadataModel",
+			"type": "object",
+			"description": "About model of Container metadata for machine.\n            ",
+			"additionalProperties": false,
+			"properties": {
+			  "Metadata": {
+				"title": "NameValueStringPairModel[]",
+				"type": "array",
+				"nullable": true,
+				"items": {
+				  "$ref": "#/components/schemas/NameValueStringPairModel"
+				}
+			  },
+			  "ContainerType": {
+				"description": "Indicates if the  current environment is cloud.",
+				"oneOf": [
+				  {
+					"$ref": "#/components/schemas/ContainerMetadataType"
+				  }
+				]
+			  }
+			}
+		  },
+		"VdaUpgradeType": {
+			"title": "VdaUpgradeType",
+			"type": "string",
+			"description": "VDA upgrade types\n            ",
+			"x-enumNames": [
+			  "NotSet",
+			  "LTSR",
+			  "CR"
+			],
+			"enum": [
+			  "NotSet",
+			  "LTSR",
+			  "CR"
+			]
+		  },
+		"VdaUpgradeState": {
+			"title": "VdaUpgradeState",
+			"type": "string",
+			"description": "Machine catalog or machine state for VDA package upgrade actions.",
+			"x-enumNames": [
+			  "MissingUpgradeType",
+			  "UpgradeScheduled",
+			  "UpgradeAvailable",
+			  "UpToDate",
+			  "Unknown"
+			],
+			"enum": [
+			  "MissingUpgradeType",
+			  "UpgradeScheduled",
+			  "UpgradeAvailable",
+			  "UpToDate",
+			  "Unknown"
+			]
+		  },
+		"MachineUpgradeDetail": {
+			"title": "MachineUpgradeDetail",
+			"type": "object",
+			"description": "Status detail of last VDA upgrade schedule for a machine.",
+			"additionalProperties": false,
+			"properties": {
+			  "Uuid": {
+				"title": "String",
+				"type": "string",
+				"description": "Uuid of this upgrade status object.",
+				"nullable": true
+			  },
+			  "ScheduleStatus": {
+				"description": "State of this upgrade status object. Exact type TBD.",
+				"nullable": true,
+				"oneOf": [
+				  {
+					"$ref": "#/components/schemas/VdaUpgradeMachineScheduleStatus"
+				  }
+				]
+			  },
+			  "StatusMessage": {
+				"title": "String",
+				"type": "string",
+				"description": "Status message resulted from the action of this upgrade status object.",
+				"nullable": true
+			  },
+			  "LastStateChangeTimeUtc": {
+				"title": "String",
+				"type": "string",
+				"description": "UTC time when this upgrade status object changed status\nfor the last time.",
+				"nullable": true
+			  },
+			  "ScheduledTimeUtc": {
+				"title": "String",
+				"type": "string",
+				"description": "UTC time when this VDA upgrade is scheduled to start.",
+				"nullable": true
+			  },
+			  "DurationInHours": {
+				"title": "Int32",
+				"type": "integer",
+				"description": "Timeout duration in hours, of the current VDA upgrade schdeule.",
+				"format": "int32",
+				"nullable": true
+			  },
+			  "TargetPackageVersion": {
+				"title": "String",
+				"type": "string",
+				"description": "Target package version of the current VDA upgrade schdeule.",
+				"nullable": true
+			  }
+			}
+		  },
+		"VdaUpgradeMachineScheduleStatus": {
+			"title": "VdaUpgradeMachineScheduleStatus",
+			"type": "string",
+			"description": "VDA package upgrade schedule status.",
+			"x-enumNames": [
+			  "Unknown",
+			  "UpgradeScheduled",
+			  "UpgradeInUpgradeWindow",
+			  "UpgradeInProgress",
+			  "UpgradeCancelled",
+			  "UpgradeFailed",
+			  "UpgradeSuccess",
+			  "UpgradeValidationFailed"
+			],
+			"enum": [
+			  "Unknown",
+			  "UpgradeScheduled",
+			  "UpgradeInUpgradeWindow",
+			  "UpgradeInProgress",
+			  "UpgradeCancelled",
+			  "UpgradeFailed",
+			  "UpgradeSuccess",
+			  "UpgradeValidationFailed"
+			]
+		  },
+		"ErrorResponse": {
+			"title": "ErrorResponse",
+			"type": "object",
+			"description": "Common error response model mandated by API guidelines",
+			"additionalProperties": false,
+			"required": [
+			  "type",
+			  "detail"
+			],
+			"properties": {
+			  "type": {
+				"title": "String",
+				"type": "string",
+				"description": "URI that indicates the type of error that occurred (need not be actually accessible).\nThe format is: https://errors-api.cloud.com/{service}/{error} ",
+				"minLength": 1,
+				"example": "https://errors-api.cloud.com/common/authentication"
+			  },
+			  "detail": {
+				"title": "String",
+				"type": "string",
+				"description": "Human-readable description of the error that occurred, localized into the caller's language.",
+				"minLength": 1,
+				"example": "Missing or invalid authentication details"
+			  },
+			  "parameters": {
+				"title": "IList`1",
+				"type": "array",
+				"description": "Additional properties that an automated client may need in order to property detect and handle the error.",
+				"nullable": true,
+				"items": {
+				  "$ref": "#/components/schemas/ErrorResponseParameter"
+				}
+			  }
+			}
+		  },
+		"ErrorResponseParameter": {
+			"title": "ErrorResponseParameter",
+			"type": "object",
+			"description": "Name/Value pair model used in ErrorResponse model",
+			"additionalProperties": false,
+			"required": [
+			  "name",
+			  "value"
+			],
+			"properties": {
+			  "name": {
+				"title": "String",
+				"type": "string",
+				"description": "Name of a parameter.",
+				"minLength": 1,
+				"example": "reason"
+			  },
+			  "value": {
+				"title": "String",
+				"type": "string",
+				"description": "Value of a parameter.",
+				"minLength": 1,
+				"example": "invalid"
+			  }
+			}
+		  },
+		"AddMachineToMachineCatalogDetailRequestModel": {
+			"title": "AddMachineToMachineCatalogDetailRequestModel",
+			"allOf": [
+			  {
+				"$ref": "#/components/schemas/AddMachineToMachineCatalogRequestModel"
+			  },
+			  {
+				"type": "object",
+				"description": "Add a machine to a machine catalog.",
+				"additionalProperties": false,
+				"properties": {
+				  "PvsAddress": {
+					"title": "String",
+					"type": "string",
+					"description": "IP address of the PVS server to be used.  This only applies if the\nProvisioningType is PVS.",
+					"maxLength": 255,
+					"pattern": "UNKNOWN",
+					"nullable": true
+				  },
+				  "PvsDomain": {
+					"title": "String",
+					"type": "string",
+					"description": "The domain of the PVS server to be used.\nThis only applies if the ProvisioningType is\nPVS.",
+					"maxLength": 255,
+					"pattern": "UNKNOWN",
+					"nullable": true
+				  },
+				  "PvsCollectionIds": {
+					"title": "String[]",
+					"type": "array",
+					"description": "Collection IDs of PVS collections containing machines that should be\nadded to the catalog.  This only applies if the\nProvisioningType is\nPVS, and is required in that case.\n\nEach item must be a valid PVS collection ID residing on the PVS\nserver located at the specified .",
+					"nullable": true,
+					"items": {
+					  "title": "String",
+					  "type": "string"
+					}
+				  },
+				  "MachineAccountCreationRules": {
+					"description": "If specified, the machine account creation rules will be updated.\nIf not specified, the machine account creation rules will be left unchanged.",
+					"nullable": true,
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/UpdateMachineAccountCreationRulesRequestModel"
+					  }
+					]
+				  },
+				  "AddAvailableMachineAccount": {
+					"description": "Active Directory machine account to add to the pool of available accounts that are to be used when machines are provisioned.",
+					"nullable": true,
+					"oneOf": [
+					  {
+						"$ref": "#/components/schemas/MachineAccountRequestModel"
+					  }
+					]
+				  }
+				}
+			  }
+			]
+		  },
+		"AddMachineToMachineCatalogRequestModel": {
+			"title": "AddMachineToMachineCatalogRequestModel",
+			"type": "object",
+			"description": "Add a machine to a machine catalog.",
+			"additionalProperties": false,
+			"properties": {
+			  "MachineName": {
+				"title": "String",
+				"type": "string",
+				"description": "Specify the name of the machine to create (in the form 'domain\\machine').  A SID can also be specified.",
+				"nullable": true,
+				"example": "For example, test.local\\machine001"
+			  },
+			  "AssignedClientName": {
+				"title": "String",
+				"type": "string",
+				"description": "The client name to which this machine will be assigned.  Machines can be assigned to\nmultiple users, a single client IP address, or a single client name, but only to one\nof these categories at a time.",
+				"nullable": true,
+				"example": "Name of an assigned client"
+			  },
+			  "AssignedIPAddress": {
+				"title": "String",
+				"type": "string",
+				"description": "The client IP address to which this machine will be assigned.  Machines can be assigned\nto multiple users, a single client IP address, or a single client name, but only to\none of these categories at a time.",
+				"nullable": true,
+				"example": "For example, 1.1.1.1"
+			  },
+			  "AssignedUsers": {
+				"title": "String[]",
+				"type": "array",
+				"description": "The user(s) to whom this machine will be assigned.  Machines can be assigned\nto multiple users, a single client IP address, or a single client name, but only to\none of these categories at a time.",
+				"nullable": true,
+				"example": [
+				  "Name of an assigned user"
+				],
+				"items": {
+				  "title": "String",
+				  "type": "string"
+				}
+			  },
+			  "HostedMachineId": {
+				"title": "String",
+				"type": "string",
+				"description": "The unique ID by which the hypervisor recognizes the machine.\nOmit this for machines that are not power-managed.",
+				"nullable": true,
+				"example": "Id of a hosted machine"
+			  },
+			  "HypervisorConnection": {
+				"title": "String",
+				"type": "string",
+				"description": "Hypervisor connection to use for power management of the machine.",
+				"nullable": true,
+				"example": "Name of a hypervisor connection"
+			  },
+			  "InMaintenanceMode": {
+				"title": "Boolean",
+				"type": "boolean",
+				"description": "Specifies whether the machine is initially in maintenance mode.  A machine in maintenance mode is\nnot available for new sessions, and for managed machines all automatic power management is disabled.\nOptional; default is `false`.",
+				"default": false,
+				"nullable": true
+			  }
+			}
+		  },
+		"UpdateMachineAccountCreationRulesRequestModel": {
+			"title": "UpdateMachineAccountCreationRulesRequestModel",
+			"type": "object",
+			"description": "Updates to machine account creation rules.",
+			"additionalProperties": false,
+			"properties": {
+			  "NamingScheme": {
+				"title": "String",
+				"type": "string",
+				"description": "Defines the template name for AD accounts created in the identity pool.\n\n\nIf this is not specified, it will remain unchanged.\n\n\nIf the provisioning scheme is configured with a NamingScheme already,\nand this value is set to an empty string, the provisioning scheme will\nbe reconfigured so that it will no longer automatically create machine\naccounts.",
+				"maxLength": 15,
+				"pattern": "^^$|(?=^.{2,15}$)(?=^[^\\\\\\/:\\*\\?\"<>|,~!@$%^&'`=+;.(){}_\\s]*$)(?=^[^\\.])(?=^.*[^\\d].*$).*(?<!-([tT][aA][cC])|([gG][wW])|([gG][aA][tT][eE][wW][aA][yY]))$",
+				"nullable": true,
+				"example": "For example, account#"
+			  },
+			  "NamingSchemeType": {
+				"description": "The type of naming scheme. This defines the format of the variable part of the AD account names that will be created.\n\n\nIf not specified, will not be changed.\n\n\nCannot be specified if  is set to an empty string.\n\n\nIf  was not previously set, but is being set now, then the default if not specified is .",
+				"nullable": true,
+				"oneOf": [
+				  {
+					"$ref": "#/components/schemas/NamingSchemeType"
+				  }
+				]
+			  },
+			  "OU": {
+				"title": "String",
+				"type": "string",
+				"description": "The OU that computer accounts will be created into.\n\n\nIf not specified, will not be changed.\n\n\nCannot be specified if  is set to an empty string.\n\n\nIf  was not previously set, but is being set now, then use the default account container specified by AD.\nThis is the `Computers` container for out-of-the-box installations of AD.",
+				"maxLength": 64,
+				"pattern": ".*",
+				"nullable": true,
+				"example": "For example, Computers"
+			  },
+			  "Domain": {
+				"title": "String",
+				"type": "string",
+				"description": "The AD domain name for the pool. Specify this in FQDN format; for example, MyDomain.com.\n\n\nIf not specified, will not be changed.\n\n\nCannot be specified if  is set to an empty string.\n\n\nIf  was not previously set, but is being set now, this property is required.",
+				"maxLength": 255,
+				"pattern": "^(?=^.{2,15}$)(?=^[^\\\\\\/:\\*\\?\"<>|,~!@$%^&'(){}_\\s]*$).*$",
+				"nullable": true,
+				"example": "For example, test.local"
+			  },
+			  "NextValue": {
+				"title": "String",
+				"type": "string",
+				"description": "Defines the next value that will be used if creating new AD accounts.\n\n\nIf not specified, will not be changed.\n\n\nCannot be specified if  is set to an empty string.\n\n\nIf  was not previously set, but is being set now, the default is a sequence of `0`s or `A`s,\ndepending on the .",
+				"maxLength": 15,
+				"pattern": "^\\w+$",
+				"nullable": true,
+				"example": "For example, 5"
+			  }
+			}
+		  },
+		"MachineAccountRequestModel": {
+			"title": "MachineAccountRequestModel",
+			"type": "object",
+			"description": "Active directory machine account which was externally created.",
+			"additionalProperties": false,
+			"required": [
+			  "ADAccountName"
+			],
+			"properties": {
+			  "ADAccountName": {
+				"title": "String",
+				"type": "string",
+				"description": "The Active Directory account name to be imported.",
+				"maxLength": 15,
+				"minLength": 1,
+				"pattern": ".*",
+				"example": "For example, MyDomain\\MyComputer"
+			  },
+			  "ResetPassword": {
+				"title": "Boolean",
+				"type": "boolean",
+				"description": "Indicates whether the machine account password should be reset.",
+				"default": true,
+				"nullable": true
+			  },
+			  "Password": {
+				"title": "String",
+				"type": "string",
+				"description": "The current password for the machine account , in the format specified by\nPasswordFormat.",
+				"maxLength": 20480,
+				"nullable": true,
+				"example": "For example, password"
+			  },
+			  "PasswordFormat": {
+				"description": "The format of the machine account password.",
+				"nullable": true,
+				"oneOf": [
+				  {
+					"$ref": "#/components/schemas/IdentityPasswordFormat"
+				  }
+				]
+			  }
+			}
+		  },
+		"NamingSchemeType": {
+			"title": "NamingSchemeType",
+			"type": "string",
+			"description": "Naming scheme type for creating machine account names during provisioning.",
+			"x-enumNames": [
+			  "Unknown",
+			  "None",
+			  "Numeric",
+			  "Alphabetic",
+			  "Unicode"
+			],
+			"enum": [
+			  "Unknown",
+			  "None",
+			  "Numeric",
+			  "Alphabetic",
+			  "Unicode"
+			]
+		  },
+		"IdentityPasswordFormat": {
+			"title": "IdentityPasswordFormat",
+			"type": "string",
+			"description": "Supported formats for specifying a password.",
+			"x-enumNames": [
+			  "Unknown",
+			  "PlainText",
+			  "Base64"
+			],
+			"enum": [
+			  "Unknown",
+			  "PlainText",
+			  "Base64"
+			]
+		  },
+		"JobResponseModel": {
+			"title": "JobResponseModel",
+			"type": "object",
+			"description": "Response object indicating status of an asynchronous job.",
+			"additionalProperties": false,
+			"required": [
+			  "Id",
+			  "Type",
+			  "Parameters",
+			  "Status",
+			  "CreationTime",
+			  "FormattedCreationTime"
+			],
+			"properties": {
+			  "Id": {
+				"title": "String",
+				"type": "string",
+				"description": "Id of the job in progress.",
+				"minLength": 1
+			  },
+			  "Type": {
+				"description": "Type of job that is being performed.",
+				"oneOf": [
+				  {
+					"$ref": "#/components/schemas/JobType"
+				  }
+				]
+			  },
+			  "OverallProgressPercent": {
+				"title": "Int32",
+				"type": "integer",
+				"description": "Overall progress percent; 0..100.\nMay be null if the job does not support progress reporting.",
+				"format": "int32",
+				"nullable": true
+			  },
+			  "IsCancellable": {
+				"title": "Boolean",
+				"type": "boolean",
+				"description": "Indicates whether the job may be cancelled.\nDeleteJob",
+				"nullable": true
+			  },
+			  "Parameters": {
+				"title": "NameValueStringPairModel[]",
+				"type": "array",
+				"description": "Indicators to the caller about what object(s) the job\nis affecting.  Consult the documentation for APIs that\ninitiate jobs to see the properties expected to be present.",
+				"items": {
+				  "$ref": "#/components/schemas/NameValueStringPairModel"
+				}
+			  },
+			  "SubJobs": {
+				"title": "JobResponseModel[]",
+				"type": "array",
+				"description": "List of sub-jobs contained within the job.",
+				"nullable": true,
+				"items": {
+				  "$ref": "#/components/schemas/JobResponseModel"
+				}
+			  },
+			  "Status": {
+				"description": "State of the job or subjob.",
+				"oneOf": [
+				  {
+					"$ref": "#/components/schemas/JobStatus"
+				  }
+				]
+			  },
+			  "ResultLocation": {
+				"title": "String",
+				"type": "string",
+				"description": "URL where the job results can be obtained.",
+				"nullable": true
+			  },
+			  "ErrorString": {
+				"title": "String",
+				"type": "string",
+				"description": "If a job or subjob failed, this will be the reason why\nthe failure occurred, presented in a human-readable\nformat.",
+				"nullable": true
+			  },
+			  "ErrorCode": {
+				"description": "If a job or subjob failed, this will be the reason why\nthe failure occurred.",
+				"nullable": true,
+				"oneOf": [
+				  {
+					"$ref": "#/components/schemas/JobErrorCode"
+				  }
+				]
+			  },
+			  "ErrorParameters": {
+				"title": "NameValueStringPairModel[]",
+				"type": "array",
+				"description": "If a job or subjob failed, this will be information\nabout related objects that were involved in the\nfailure.",
+				"nullable": true,
+				"items": {
+				  "$ref": "#/components/schemas/NameValueStringPairModel"
+				}
+			  },
+			  "CreationTime": {
+				"title": "String",
+				"type": "string",
+				"description": "Time when the job was created.",
+				"minLength": 1
+			  },
+			  "FormattedCreationTime": {
+				"title": "String",
+				"type": "string",
+				"description": "Formatted time when the job was created.\nRFC 3339 compatible format.",
+				"minLength": 1
+			  },
+			  "StartTime": {
+				"title": "String",
+				"type": "string",
+				"description": "Time when the job was started.\nWill be null if the job has not yet started.",
+				"nullable": true
+			  },
+			  "FormattedStartTime": {
+				"title": "String",
+				"type": "string",
+				"description": "Formatted time when the job was started.\nWill be null if the job has not yet started.\nRFC 3339 compatible format.",
+				"nullable": true
+			  },
+			  "EndTime": {
+				"title": "String",
+				"type": "string",
+				"description": "Time when the job was completed.\nWill be null if the job has not yet completed.",
+				"nullable": true
+			  },
+			  "FormattedEndTime": {
+				"title": "String",
+				"type": "string",
+				"description": "Formatted time when the job was completed.\nWill be null if the job has not yet completed.\nRFC 3339 compatible format.",
+				"nullable": true
+			  }
+			}
+		  },
+		"JobType": {
+			"title": "JobType",
+			"type": "string",
+			"description": "Types of long-running jobs that may be executing.",
+			"x-enumNames": [
+			  "Unknown",
+			  "Batch",
+			  "CreateDeliveryGroup",
+			  "UpdateDeliveryGroup",
+			  "DeleteDeliveryGroup",
+			  "AddDeliveryGroupMachines",
+			  "RemoveDeliveryGroupMachines",
+			  "AddDeliveryGroupApplications",
+			  "RemoveDeliveryGroupApplications",
+			  "RemoveDeliveryGroupApplicationGroups",
+			  "GetAdminFolders",
+			  "GetApplicationFolders",
+			  "GetAdminFolderApplications",
+			  "GetAdminFolderMachineCatalogs",
+			  "GetApplicationFolderApplications",
+			  "GetApplications",
+			  "GetApplicationSessions",
+			  "GetDeliveryGroups",
+			  "SearchApplications",
+			  "RefreshAppVApplications",
+			  "TestDeliveryGroup",
+			  "CreateTag",
+			  "UpdateTag",
+			  "DeleteTag",
+			  "AddIcon",
+			  "RemoveIcon",
+			  "SetTagApplications",
+			  "SetTagApplicationGroups",
+			  "SetTagDeliveryGroups",
+			  "SetTagMachineCatalogs",
+			  "SetTagMachines",
+			  "GetStartMenuApplications",
+			  "GetDeliveryGroupApplications",
+			  "GetDeliveryGroupsDesktops",
+			  "RebootMachines",
+			  "ShutDownMachines",
+			  "StartMachines",
+			  "SuspendMachines",
+			  "ResumeMachines",
+			  "CreateAdminFolder",
+			  "CreateApplicationFolder",
+			  "CreateRebootSchedule",
+			  "UpdateRebootSchedule",
+			  "DeleteRebootSchedule",
+			  "CreatePowerTimeScheme",
+			  "UpdatePowerTimeScheme",
+			  "DeletePowerTimeScheme",
+			  "CreateAdvancedAccessPolicy",
+			  "UpdateAdvancedAccessPolicy",
+			  "DeleteAdvancedAccessPolicy",
+			  "AddMachineCatalogMachine",
+			  "UpdateMachineCatalogProvisioningScheme",
+			  "CreateMachineCatalog",
+			  "CreateMachineIdentity",
+			  "DeleteMachineIdentity",
+			  "UpdateMachineIdentity",
+			  "UpdateUserIdentity",
+			  "UpdateMachineCatalog",
+			  "DeleteMachineCatalog",
+			  "TestMachineCatalog",
+			  "LogoffSessions",
+			  "DisconnectSessions",
+			  "LogoffMachineSessions",
+			  "DeleteMachine",
+			  "SendSessionMessage",
+			  "AddApplications",
+			  "GetApplicationGroups",
+			  "GetApplicationGroupApplications",
+			  "GetApplicationGroupDeliveryGroups",
+			  "CreateApplicationGroup",
+			  "DeleteApplication",
+			  "DeleteApplicationGroup",
+			  "DeleteAdminFolder",
+			  "DeleteApplicationFolder",
+			  "RemoveApplicationGroupApplications",
+			  "GetApplicationApplicationGroups",
+			  "GetApplicationDeliveryGroups",
+			  "UpdateApplication",
+			  "UpdateApplicationGroup",
+			  "UpdateAdminFolder",
+			  "UpdateApplicationFolder",
+			  "SearchStartMenuApplications",
+			  "ModifyFTA",
+			  "ImportFTA",
+			  "TestSite",
+			  "CreateHypervisor",
+			  "CreateHypervisorResourcePool",
+			  "UpdateHypervisor",
+			  "UpdateHypervisorResourcePool",
+			  "HypervisorVmValidation",
+			  "TestHypervisor",
+			  "TestHypervisorResourcePool",
+			  "CreateStoreFrontServer",
+			  "DeleteStoreFrontServer",
+			  "UpdateStoreFrontServer",
+			  "UpdateImage",
+			  "SetProvScheme",
+			  "AddMachines",
+			  "UpdateMachineCatalogMachine",
+			  "RollbackMachineCatalogProvisioningScheme",
+			  "GetHypervisorResourcePool",
+			  "GetHypervisorsAndResourcePools",
+			  "GetHypervisorResourcePoolResources",
+			  "GetHypervisorAllResources",
+			  "GetHypervisorAllResourcesWithoutConnection",
+			  "GetHypervisorResourcePools",
+			  "GetHypervisor",
+			  "GetHypervisors",
+			  "DeleteHypervisor",
+			  "DeleteResourcePool",
+			  "GetHypervisorSupportedPlugins",
+			  "GetHypervisorServerHAAddresses",
+			  "GetSessionApplications",
+			  "GetOperations",
+			  "DoOperationSearch",
+			  "GetSessions",
+			  "DoSessionSearch",
+			  "GetMachines",
+			  "DoMachineSearch",
+			  "GetPvsSites",
+			  "GetPvsCollections",
+			  "GetPvsMachinesForCatalog",
+			  "GetMachineCatalogMachineAccounts",
+			  "GetMachineStartMenuShortcutIcon",
+			  "GetMachineCatalogs",
+			  "SearchMachineCatalogs",
+			  "GetMachineCatalogDetails",
+			  "GetAppVServers",
+			  "ImportAppVPackages",
+			  "GetAppVPackages",
+			  "RemoveAppVPackage",
+			  "GetAppVIsolationGroups",
+			  "GetAppVPackageBrokerApplications",
+			  "GetAppVPackageDelveryGroups",
+			  "DeleteAppVIsolationGroup",
+			  "CreateAppVIsolationGroup",
+			  "UpdateAppVIsolationGroup",
+			  "GetAppVIsolationGroup",
+			  "GetApplicationFtas",
+			  "GetMachineCatalogMachines",
+			  "GetMachineCatalogDeliveryGroupAssociations",
+			  "DoDeliveryGroupSearch",
+			  "GetMachineCatalogLastMasterImage",
+			  "DoZoneSearch",
+			  "CreateZone",
+			  "EditZone",
+			  "DeleteZone",
+			  "AddItemsIntoZone",
+			  "MoveItemsIntoZone",
+			  "RemoveItemsFromZone",
+			  "StartDeliveryGroupRebootCycle",
+			  "GetAdminAdministrators",
+			  "CreateAdminScope",
+			  "DeleteAdminScope",
+			  "CreateAdminRole",
+			  "UpdateAdminRole",
+			  "DeleteAdminRole",
+			  "UpdateAdminScope",
+			  "SetBrokerHypervisorConnection",
+			  "ResetBrokerHypervisorConnection",
+			  "GetAllCatalogActions",
+			  "GetCatalogAction",
+			  "GetSingleCatalogAction",
+			  "CancelCatalogAction",
+			  "DeleteAllCatalogActions",
+			  "DeleteCatalogActions",
+			  "HideSession",
+			  "UnhideSession",
+			  "CreateMachineCatalogUpgradeSchedule",
+			  "RemoveMachineCatalogUpgradeSchedule",
+			  "UpdateMachineCatalogUpgradeSchedule",
+			  "GetHypervisorMachineCatalogs",
+			  "GetHypervisorResourcePoolMachineCatalogs",
+			  "GetHypervisorAdministrators",
+			  "GetHypervisorResourcePoolAdministrators",
+			  "CreateMachineUpgradeSchedule",
+			  "UpdateMachineUpgradeSchedule",
+			  "RemoveMachineUpgradeSchedule",
+			  "CreateMachinesUpgradeScheudle",
+			  "GetAppLibPackageDiscoveryProfiles",
+			  "GetAppLibPackageDiscoveryProfile",
+			  "CreateAppLibPackageDiscoveryProfile",
+			  "UpdateAppLibPackageDiscoveryProfile",
+			  "RemoveAppLibPackageDiscoveryProfile",
+			  "ValidateHypervisorResourcePoolResource",
+			  "CreateAppLibPackageDiscovery",
+			  "GetAppLibPackageDiscovery",
+			  "GetAppLibPackageDiscoveries",
+			  "SendCasEvent",
+			  "AddDeliveryGroupPolicySet",
+			  "RemoveDeliveryGroupPolicySet",
+			  "StartSessionRecording",
+			  "StopSessionRecording"
+			],
+			"enum": [
+			  "Unknown",
+			  "Batch",
+			  "CreateDeliveryGroup",
+			  "UpdateDeliveryGroup",
+			  "DeleteDeliveryGroup",
+			  "AddDeliveryGroupMachines",
+			  "RemoveDeliveryGroupMachines",
+			  "AddDeliveryGroupApplications",
+			  "RemoveDeliveryGroupApplications",
+			  "RemoveDeliveryGroupApplicationGroups",
+			  "GetAdminFolders",
+			  "GetApplicationFolders",
+			  "GetAdminFolderApplications",
+			  "GetAdminFolderMachineCatalogs",
+			  "GetApplicationFolderApplications",
+			  "GetApplications",
+			  "GetApplicationSessions",
+			  "GetDeliveryGroups",
+			  "SearchApplications",
+			  "RefreshAppVApplications",
+			  "TestDeliveryGroup",
+			  "CreateTag",
+			  "UpdateTag",
+			  "DeleteTag",
+			  "AddIcon",
+			  "RemoveIcon",
+			  "SetTagApplications",
+			  "SetTagApplicationGroups",
+			  "SetTagDeliveryGroups",
+			  "SetTagMachineCatalogs",
+			  "SetTagMachines",
+			  "GetStartMenuApplications",
+			  "GetDeliveryGroupApplications",
+			  "GetDeliveryGroupsDesktops",
+			  "RebootMachines",
+			  "ShutDownMachines",
+			  "StartMachines",
+			  "SuspendMachines",
+			  "ResumeMachines",
+			  "CreateAdminFolder",
+			  "CreateApplicationFolder",
+			  "CreateRebootSchedule",
+			  "UpdateRebootSchedule",
+			  "DeleteRebootSchedule",
+			  "CreatePowerTimeScheme",
+			  "UpdatePowerTimeScheme",
+			  "DeletePowerTimeScheme",
+			  "CreateAdvancedAccessPolicy",
+			  "UpdateAdvancedAccessPolicy",
+			  "DeleteAdvancedAccessPolicy",
+			  "AddMachineCatalogMachine",
+			  "UpdateMachineCatalogProvisioningScheme",
+			  "CreateMachineCatalog",
+			  "CreateMachineIdentity",
+			  "DeleteMachineIdentity",
+			  "UpdateMachineIdentity",
+			  "UpdateUserIdentity",
+			  "UpdateMachineCatalog",
+			  "DeleteMachineCatalog",
+			  "TestMachineCatalog",
+			  "LogoffSessions",
+			  "DisconnectSessions",
+			  "LogoffMachineSessions",
+			  "DeleteMachine",
+			  "SendSessionMessage",
+			  "AddApplications",
+			  "GetApplicationGroups",
+			  "GetApplicationGroupApplications",
+			  "GetApplicationGroupDeliveryGroups",
+			  "CreateApplicationGroup",
+			  "DeleteApplication",
+			  "DeleteApplicationGroup",
+			  "DeleteAdminFolder",
+			  "DeleteApplicationFolder",
+			  "RemoveApplicationGroupApplications",
+			  "GetApplicationApplicationGroups",
+			  "GetApplicationDeliveryGroups",
+			  "UpdateApplication",
+			  "UpdateApplicationGroup",
+			  "UpdateAdminFolder",
+			  "UpdateApplicationFolder",
+			  "SearchStartMenuApplications",
+			  "ModifyFTA",
+			  "ImportFTA",
+			  "TestSite",
+			  "CreateHypervisor",
+			  "CreateHypervisorResourcePool",
+			  "UpdateHypervisor",
+			  "UpdateHypervisorResourcePool",
+			  "HypervisorVmValidation",
+			  "TestHypervisor",
+			  "TestHypervisorResourcePool",
+			  "CreateStoreFrontServer",
+			  "DeleteStoreFrontServer",
+			  "UpdateStoreFrontServer",
+			  "UpdateImage",
+			  "SetProvScheme",
+			  "AddMachines",
+			  "UpdateMachineCatalogMachine",
+			  "RollbackMachineCatalogProvisioningScheme",
+			  "GetHypervisorResourcePool",
+			  "GetHypervisorsAndResourcePools",
+			  "GetHypervisorResourcePoolResources",
+			  "GetHypervisorAllResources",
+			  "GetHypervisorAllResourcesWithoutConnection",
+			  "GetHypervisorResourcePools",
+			  "GetHypervisor",
+			  "GetHypervisors",
+			  "DeleteHypervisor",
+			  "DeleteResourcePool",
+			  "GetHypervisorSupportedPlugins",
+			  "GetHypervisorServerHAAddresses",
+			  "GetSessionApplications",
+			  "GetOperations",
+			  "DoOperationSearch",
+			  "GetSessions",
+			  "DoSessionSearch",
+			  "GetMachines",
+			  "DoMachineSearch",
+			  "GetPvsSites",
+			  "GetPvsCollections",
+			  "GetPvsMachinesForCatalog",
+			  "GetMachineCatalogMachineAccounts",
+			  "GetMachineStartMenuShortcutIcon",
+			  "GetMachineCatalogs",
+			  "SearchMachineCatalogs",
+			  "GetMachineCatalogDetails",
+			  "GetAppVServers",
+			  "ImportAppVPackages",
+			  "GetAppVPackages",
+			  "RemoveAppVPackage",
+			  "GetAppVIsolationGroups",
+			  "GetAppVPackageBrokerApplications",
+			  "GetAppVPackageDelveryGroups",
+			  "DeleteAppVIsolationGroup",
+			  "CreateAppVIsolationGroup",
+			  "UpdateAppVIsolationGroup",
+			  "GetAppVIsolationGroup",
+			  "GetApplicationFtas",
+			  "GetMachineCatalogMachines",
+			  "GetMachineCatalogDeliveryGroupAssociations",
+			  "DoDeliveryGroupSearch",
+			  "GetMachineCatalogLastMasterImage",
+			  "DoZoneSearch",
+			  "CreateZone",
+			  "EditZone",
+			  "DeleteZone",
+			  "AddItemsIntoZone",
+			  "MoveItemsIntoZone",
+			  "RemoveItemsFromZone",
+			  "StartDeliveryGroupRebootCycle",
+			  "GetAdminAdministrators",
+			  "CreateAdminScope",
+			  "DeleteAdminScope",
+			  "CreateAdminRole",
+			  "UpdateAdminRole",
+			  "DeleteAdminRole",
+			  "UpdateAdminScope",
+			  "SetBrokerHypervisorConnection",
+			  "ResetBrokerHypervisorConnection",
+			  "GetAllCatalogActions",
+			  "GetCatalogAction",
+			  "GetSingleCatalogAction",
+			  "CancelCatalogAction",
+			  "DeleteAllCatalogActions",
+			  "DeleteCatalogActions",
+			  "HideSession",
+			  "UnhideSession",
+			  "CreateMachineCatalogUpgradeSchedule",
+			  "RemoveMachineCatalogUpgradeSchedule",
+			  "UpdateMachineCatalogUpgradeSchedule",
+			  "GetHypervisorMachineCatalogs",
+			  "GetHypervisorResourcePoolMachineCatalogs",
+			  "GetHypervisorAdministrators",
+			  "GetHypervisorResourcePoolAdministrators",
+			  "CreateMachineUpgradeSchedule",
+			  "UpdateMachineUpgradeSchedule",
+			  "RemoveMachineUpgradeSchedule",
+			  "CreateMachinesUpgradeScheudle",
+			  "GetAppLibPackageDiscoveryProfiles",
+			  "GetAppLibPackageDiscoveryProfile",
+			  "CreateAppLibPackageDiscoveryProfile",
+			  "UpdateAppLibPackageDiscoveryProfile",
+			  "RemoveAppLibPackageDiscoveryProfile",
+			  "ValidateHypervisorResourcePoolResource",
+			  "CreateAppLibPackageDiscovery",
+			  "GetAppLibPackageDiscovery",
+			  "GetAppLibPackageDiscoveries",
+			  "SendCasEvent",
+			  "AddDeliveryGroupPolicySet",
+			  "RemoveDeliveryGroupPolicySet",
+			  "StartSessionRecording",
+			  "StopSessionRecording"
+			]
+		  },
+		"NameValueStringPairModel": {
+			"title": "NameValueStringPairModel",
+			"type": "object",
+			"description": "A name/value pair, with the value of (JSON) type String.",
+			"additionalProperties": false,
+			"properties": {
+			  "Name": {
+				"title": "String",
+				"type": "string",
+				"description": "Name.",
+				"nullable": true,
+				"example": "Name"
+			  },
+			  "Value": {
+				"title": "String",
+				"type": "string",
+				"description": "Value.",
+				"nullable": true,
+				"example": "Value"
+			  }
+			}
+		  },
+		"JobStatus": {
+			"title": "JobStatus",
+			"type": "string",
+			"description": "Status of a job.",
+			"x-enumNames": [
+			  "Unknown",
+			  "NotStarted",
+			  "InProgress",
+			  "Complete",
+			  "CompleteWithWarning",
+			  "Failed",
+			  "Canceled",
+			  "NonTerminatingError"
+			],
+			"enum": [
+			  "Unknown",
+			  "NotStarted",
+			  "InProgress",
+			  "Complete",
+			  "CompleteWithWarning",
+			  "Failed",
+			  "Canceled",
+			  "NonTerminatingError"
+			]
+		  },
+		"JobErrorCode": {
+			"title": "JobErrorCode",
+			"type": "string",
+			"description": "Possible error codes returned from a job.",
+			"x-enumNames": [
+			  "Unknown",
+			  "UnknownError",
+			  "AccessDenied",
+			  "PermissionDenied",
+			  "UserNotAuthorized",
+			  "AuthorizationFailed",
+			  "AuthorizationError",
+			  "DeniedByConfigurationLogging",
+			  "DataStoreUnconfigured",
+			  "SiteUnconfigured",
+			  "MissingDbSchemaFeature",
+			  "DatabaseNotConfigured",
+			  "ObjectNotFound",
+			  "UnknownObject",
+			  "UnknownAccount",
+			  "UnknownCatalog",
+			  "UnknownController",
+			  "UnknownMachine",
+			  "UnknownDesktop",
+			  "ScopeNotFound",
+			  "UnknownMachineName",
+			  "UnknownApplication",
+			  "UnknownIcon",
+			  "UnknownPolicyRule",
+			  "UnknownFileTypeExtension",
+			  "UnknownConfiguredFTA",
+			  "UnknownImportedFTA",
+			  "UnknownDesktopTag",
+			  "DesktopTagInUse",
+			  "UnknownHypervisorConnection",
+			  "UnknownPowerTimeScheme",
+			  "UnknownDumScheme",
+			  "UnknownPowerAction",
+			  "UnknownSession",
+			  "UnknownConfigurationSlot",
+			  "UnknownRebootSchedule",
+			  "LACNotFound",
+			  "HypervisorConnectionObjectNotFound",
+			  "PathNotFound",
+			  "DriveNotFound",
+			  "IdentityPoolOUInvalid",
+			  "ProvisioningSchemeNotFound",
+			  "IdentityPoolObjectNotFound",
+			  "HostingUnitNotFound",
+			  "AppDNASolutionNotFound",
+			  "BrokerMachineNotFound",
+			  "MCSDiskCopyTaskNotFound",
+			  "AppDiskNotFound",
+			  "AppDNAOperatingSystemNotFound",
+			  "MultipleRelationshipsSpecified",
+			  "NoRelationshipSpecified",
+			  "NoMatchingItems",
+			  "InvalidTimeZone",
+			  "InvalidScheduleStartTime",
+			  "InvalidStatusUpdatingFTA",
+			  "UserAccountRequired",
+			  "MustSupplyNameOrSID",
+			  "MustNotSupplyBothNameAndSID",
+			  "ConstraintViolation",
+			  "UnsupportedWildcard",
+			  "InvalidSecurityIdentifier",
+			  "InvalidIconData",
+			  "PvsForVMInvalid",
+			  "PvsDetailsRequired",
+			  "PvsDetailsInvalid",
+			  "MachinesArePhysicalRequired",
+			  "MachinesArePhysicalConflict",
+			  "MissingHostingData",
+			  "SuperfluousHostingData",
+			  "MultiSessionPoolManagementNotSupported",
+			  "MultipleUserAssignments",
+			  "MultipleDesktopAssignments",
+			  "PolicyRuleAppliedToMultipleApps",
+			  "ImportedFTACorrupted",
+			  "PowerTimeSchemeDaysOverlap",
+			  "SidMissingForEvictScript",
+			  "SidSuppliedForNonEvictScript",
+			  "MachineHypMcIdAlone",
+			  "InvalidRebootScheduleDay",
+			  "InvalidCommandRecipient",
+			  "InvalidAccount",
+			  "LACNotSupported",
+			  "WebkeyNotSupported",
+			  "InvalidLicenseFile",
+			  "EmptyLicenseFile",
+			  "InvalidLicenseFileExtension",
+			  "PollingIntervalMoreThanMaxValue",
+			  "PollingIntervalLessThanMinValue",
+			  "RetentionPeriodLessThanMinValue",
+			  "InvalidStartDateOrEndDate",
+			  "InvalidProductEditionModelFormat",
+			  "InvalidCEIPOption",
+			  "IdentityPoolOUOfWrongDomain",
+			  "NamingSchemeHasMoreThanOneSetOfHashes",
+			  "NamingSchemeIllegalCharacter",
+			  "NamingSchemeIllegalComputerName",
+			  "NamingSchemeMayNotBeAllNumbers",
+			  "NamingSchemeMayNotStartWithPeriod",
+			  "NamingSchemeMissingNumericSpecifications",
+			  "NamingSchemeNotEnoughCharacters",
+			  "NamingSchemeTooManyCharacters",
+			  "NamingSchemeUnicodeCharactersNotEnabled",
+			  "MCSCopyFailureInvalidVirtualDiskId",
+			  "InvalidMachineId",
+			  "DuplicateAppDisplayName",
+			  "DuplicateAppBrowserName",
+			  "DuplicateAdministrator",
+			  "DuplicateRebootSchedule",
+			  "DuplicateObject",
+			  "AdminAlreadyExists",
+			  "RoleAlreadyExists",
+			  "ScopeAlreadyExists",
+			  "HostingUnitDuplicateObjectExists",
+			  "ProvisioningSchemeNameAlreadyExists",
+			  "IdentityPoolDuplicateObjectExists",
+			  "AppDiskNameAlreadyExists",
+			  "CommunicationError",
+			  "NoServerErrorId",
+			  "InvalidServerPortString",
+			  "InvalidPortNumber",
+			  "InvalidServerGuid",
+			  "InvalidServerVersion",
+			  "ServerTimeout",
+			  "InvalidIPAddress",
+			  "NoSuitableServiceInstanceErrorId",
+			  "CommunicationsError",
+			  "CitrixLicensingVendorOrServiceDown",
+			  "CanNotImportStartUpLic",
+			  "CommunicationSecurityError",
+			  "InvalidArgument",
+			  "UpdateCacheInvalidArgument",
+			  "DataStoreException",
+			  "UnknownOperation",
+			  "DataStoreAlreadyConfigured",
+			  "MachineNotRegistered",
+			  "PowerManagedController",
+			  "DesktopGroupInUse",
+			  "MachineInUse",
+			  "CatalogInUse",
+			  "ApplicationInUse",
+			  "MachineAlreadyAllocated",
+			  "MachineNotInDesktopGroup",
+			  "MachineInDesktopGroup",
+			  "IncompatibleMachine",
+			  "IncompatibleDesktopUsage",
+			  "IncompatibleDesktopAssignment",
+			  "IncompatibleDesktopGroup",
+			  "IncompatibleCatalog",
+			  "DesktopAssigned",
+			  "InMaintenanceMode",
+			  "GroupInMaintenanceMode",
+			  "IconInUse",
+			  "NoAvailableMachine",
+			  "PowerTimeSchemeInUse",
+			  "IncompatibleDumScheme",
+			  "HypervisorInMaintenanceMode",
+			  "PowerActionsNotSupported",
+			  "PowerActionInProgress",
+			  "PowerActionComplete",
+			  "PowerActionIgnored",
+			  "PowerActionNotStarted",
+			  "ServiceGroupNotAllowed",
+			  "MachineConfigurationInUse",
+			  "NoEntitlements",
+			  "LastFullAdmin",
+			  "HypervisorConnectionForHostingUnitIsVirtual",
+			  "HostingUnitNetworkPathInvalid",
+			  "HostingUnitRootPathInvalid",
+			  "HostingUnitStoragePathInvalid",
+			  "InvalidHypervisorItem",
+			  "VMAlreadyUnlocked",
+			  "AppDiskInUse",
+			  "TaskActive",
+			  "AppDiskAlreadySealed",
+			  "AppVPackageImportError",
+			  "NoRemainingDeliveryGroups",
+			  "NameResolutionFailure",
+			  "HypervisorAddressInvalidFormat",
+			  "HypervisorPermissionDenied",
+			  "SCVMMConsoleNotInstalled",
+			  "ConnectionNotVCenter",
+			  "ConnectionExpiredCredentials",
+			  "ConnectionInvalidCredentials",
+			  "VCenterConnectionSslFailure",
+			  "XenServerConnectionSslFailure",
+			  "HypervisorNotContactable",
+			  "NoWorkspaceCloudConnectorFound",
+			  "WorkspaceCloudConnectorTimeout",
+			  "WorkspaceCloudConnectorEndpointNotFound",
+			  "VCenterHttpsConnectionRequiredForEndpoint"
+			],
+			"enum": [
+			  "Unknown",
+			  "UnknownError",
+			  "AccessDenied",
+			  "PermissionDenied",
+			  "UserNotAuthorized",
+			  "AuthorizationFailed",
+			  "AuthorizationError",
+			  "DeniedByConfigurationLogging",
+			  "DataStoreUnconfigured",
+			  "SiteUnconfigured",
+			  "MissingDbSchemaFeature",
+			  "DatabaseNotConfigured",
+			  "ObjectNotFound",
+			  "UnknownObject",
+			  "UnknownAccount",
+			  "UnknownCatalog",
+			  "UnknownController",
+			  "UnknownMachine",
+			  "UnknownDesktop",
+			  "ScopeNotFound",
+			  "UnknownMachineName",
+			  "UnknownApplication",
+			  "UnknownIcon",
+			  "UnknownPolicyRule",
+			  "UnknownFileTypeExtension",
+			  "UnknownConfiguredFTA",
+			  "UnknownImportedFTA",
+			  "UnknownDesktopTag",
+			  "DesktopTagInUse",
+			  "UnknownHypervisorConnection",
+			  "UnknownPowerTimeScheme",
+			  "UnknownDumScheme",
+			  "UnknownPowerAction",
+			  "UnknownSession",
+			  "UnknownConfigurationSlot",
+			  "UnknownRebootSchedule",
+			  "LACNotFound",
+			  "HypervisorConnectionObjectNotFound",
+			  "PathNotFound",
+			  "DriveNotFound",
+			  "IdentityPoolOUInvalid",
+			  "ProvisioningSchemeNotFound",
+			  "IdentityPoolObjectNotFound",
+			  "HostingUnitNotFound",
+			  "AppDNASolutionNotFound",
+			  "BrokerMachineNotFound",
+			  "MCSDiskCopyTaskNotFound",
+			  "AppDiskNotFound",
+			  "AppDNAOperatingSystemNotFound",
+			  "MultipleRelationshipsSpecified",
+			  "NoRelationshipSpecified",
+			  "NoMatchingItems",
+			  "InvalidTimeZone",
+			  "InvalidScheduleStartTime",
+			  "InvalidStatusUpdatingFTA",
+			  "UserAccountRequired",
+			  "MustSupplyNameOrSID",
+			  "MustNotSupplyBothNameAndSID",
+			  "ConstraintViolation",
+			  "UnsupportedWildcard",
+			  "InvalidSecurityIdentifier",
+			  "InvalidIconData",
+			  "PvsForVMInvalid",
+			  "PvsDetailsRequired",
+			  "PvsDetailsInvalid",
+			  "MachinesArePhysicalRequired",
+			  "MachinesArePhysicalConflict",
+			  "MissingHostingData",
+			  "SuperfluousHostingData",
+			  "MultiSessionPoolManagementNotSupported",
+			  "MultipleUserAssignments",
+			  "MultipleDesktopAssignments",
+			  "PolicyRuleAppliedToMultipleApps",
+			  "ImportedFTACorrupted",
+			  "PowerTimeSchemeDaysOverlap",
+			  "SidMissingForEvictScript",
+			  "SidSuppliedForNonEvictScript",
+			  "MachineHypMcIdAlone",
+			  "InvalidRebootScheduleDay",
+			  "InvalidCommandRecipient",
+			  "InvalidAccount",
+			  "LACNotSupported",
+			  "WebkeyNotSupported",
+			  "InvalidLicenseFile",
+			  "EmptyLicenseFile",
+			  "InvalidLicenseFileExtension",
+			  "PollingIntervalMoreThanMaxValue",
+			  "PollingIntervalLessThanMinValue",
+			  "RetentionPeriodLessThanMinValue",
+			  "InvalidStartDateOrEndDate",
+			  "InvalidProductEditionModelFormat",
+			  "InvalidCEIPOption",
+			  "IdentityPoolOUOfWrongDomain",
+			  "NamingSchemeHasMoreThanOneSetOfHashes",
+			  "NamingSchemeIllegalCharacter",
+			  "NamingSchemeIllegalComputerName",
+			  "NamingSchemeMayNotBeAllNumbers",
+			  "NamingSchemeMayNotStartWithPeriod",
+			  "NamingSchemeMissingNumericSpecifications",
+			  "NamingSchemeNotEnoughCharacters",
+			  "NamingSchemeTooManyCharacters",
+			  "NamingSchemeUnicodeCharactersNotEnabled",
+			  "MCSCopyFailureInvalidVirtualDiskId",
+			  "InvalidMachineId",
+			  "DuplicateAppDisplayName",
+			  "DuplicateAppBrowserName",
+			  "DuplicateAdministrator",
+			  "DuplicateRebootSchedule",
+			  "DuplicateObject",
+			  "AdminAlreadyExists",
+			  "RoleAlreadyExists",
+			  "ScopeAlreadyExists",
+			  "HostingUnitDuplicateObjectExists",
+			  "ProvisioningSchemeNameAlreadyExists",
+			  "IdentityPoolDuplicateObjectExists",
+			  "AppDiskNameAlreadyExists",
+			  "CommunicationError",
+			  "NoServerErrorId",
+			  "InvalidServerPortString",
+			  "InvalidPortNumber",
+			  "InvalidServerGuid",
+			  "InvalidServerVersion",
+			  "ServerTimeout",
+			  "InvalidIPAddress",
+			  "NoSuitableServiceInstanceErrorId",
+			  "CommunicationsError",
+			  "CitrixLicensingVendorOrServiceDown",
+			  "CanNotImportStartUpLic",
+			  "CommunicationSecurityError",
+			  "InvalidArgument",
+			  "UpdateCacheInvalidArgument",
+			  "DataStoreException",
+			  "UnknownOperation",
+			  "DataStoreAlreadyConfigured",
+			  "MachineNotRegistered",
+			  "PowerManagedController",
+			  "DesktopGroupInUse",
+			  "MachineInUse",
+			  "CatalogInUse",
+			  "ApplicationInUse",
+			  "MachineAlreadyAllocated",
+			  "MachineNotInDesktopGroup",
+			  "MachineInDesktopGroup",
+			  "IncompatibleMachine",
+			  "IncompatibleDesktopUsage",
+			  "IncompatibleDesktopAssignment",
+			  "IncompatibleDesktopGroup",
+			  "IncompatibleCatalog",
+			  "DesktopAssigned",
+			  "InMaintenanceMode",
+			  "GroupInMaintenanceMode",
+			  "IconInUse",
+			  "NoAvailableMachine",
+			  "PowerTimeSchemeInUse",
+			  "IncompatibleDumScheme",
+			  "HypervisorInMaintenanceMode",
+			  "PowerActionsNotSupported",
+			  "PowerActionInProgress",
+			  "PowerActionComplete",
+			  "PowerActionIgnored",
+			  "PowerActionNotStarted",
+			  "ServiceGroupNotAllowed",
+			  "MachineConfigurationInUse",
+			  "NoEntitlements",
+			  "LastFullAdmin",
+			  "HypervisorConnectionForHostingUnitIsVirtual",
+			  "HostingUnitNetworkPathInvalid",
+			  "HostingUnitRootPathInvalid",
+			  "HostingUnitStoragePathInvalid",
+			  "InvalidHypervisorItem",
+			  "VMAlreadyUnlocked",
+			  "AppDiskInUse",
+			  "TaskActive",
+			  "AppDiskAlreadySealed",
+			  "AppVPackageImportError",
+			  "NoRemainingDeliveryGroups",
+			  "NameResolutionFailure",
+			  "HypervisorAddressInvalidFormat",
+			  "HypervisorPermissionDenied",
+			  "SCVMMConsoleNotInstalled",
+			  "ConnectionNotVCenter",
+			  "ConnectionExpiredCredentials",
+			  "ConnectionInvalidCredentials",
+			  "VCenterConnectionSslFailure",
+			  "XenServerConnectionSslFailure",
+			  "HypervisorNotContactable",
+			  "NoWorkspaceCloudConnectorFound",
+			  "WorkspaceCloudConnectorTimeout",
+			  "WorkspaceCloudConnectorEndpointNotFound",
+			  "VCenterHttpsConnectionRequiredForEndpoint"
+			]
+		  },
+			},
+		},
+	},
+}
